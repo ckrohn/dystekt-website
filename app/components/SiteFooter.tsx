@@ -7,8 +7,11 @@ export function SiteFooter() {
         <Link className="footer-brand" href="/" aria-label="Dystekt home">
           <img src="/media/dystekt-logo.svg" alt="" />
         </Link>
-        <p>Melodic death metal<br />Cologne, Germany</p>
-        <p className="footer-copy">© {new Date().getFullYear()} Dystekt</p>
+        <p className="footer-tagline">Melodic death metal · Cologne, Germany</p>
+        <div className="footer-meta">
+          <Link href="/imprint">Imprint</Link>
+          <span>© {new Date().getFullYear()} Dystekt</span>
+        </div>
       </div>
     </footer>
   );

@@ -124,6 +124,11 @@ img {
   inset: 0;
 }
 
+.hero-photo,
+.hero-shade {
+  bottom: 190px;
+}
+
 .hero-photo {
   background: url("/media/dystekt-band.jpg") center 30% / cover no-repeat;
   filter: contrast(1.08);
@@ -135,14 +140,19 @@ img {
 }
 
 .hero-content {
-  position: relative;
+  position: absolute;
   z-index: 2;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  padding-top: 74px;
+  inset: auto 0 0;
+  width: 100%;
+  max-width: none;
+  height: 190px;
+  display: grid;
+  grid-template-columns: minmax(240px, 360px) 1fr;
+  align-items: center;
+  gap: 56px;
+  padding: 0 max(24px, calc((100% - 1280px) / 2));
+  border-top: 1px solid var(--line);
+  background: var(--ink);
 }
 
 .eyebrow {
@@ -167,12 +177,17 @@ img {
 }
 
 .hero-logo {
-  width: min(48vw, 650px);
-  margin-left: -24px;
+  width: auto;
+  height: 160px;
+  max-width: 100%;
+  align-self: center;
+  margin: 0;
+  object-fit: contain;
 }
 
 .hero .hero-actions {
-  margin-top: 30px;
+  justify-self: end;
+  margin: 0;
 }
 
 .hero-actions,
@@ -246,7 +261,7 @@ img {
   position: absolute;
   z-index: 3;
   right: 34px;
-  bottom: 32px;
+  bottom: 210px;
   margin: 0;
   writing-mode: vertical-rl;
   font-family: var(--display);
@@ -414,35 +429,150 @@ img {
 }
 
 .site-footer {
-  padding-block: 48px;
+  padding-block: 26px;
   border-top: 1px solid var(--line);
   background: var(--ink);
 }
 
 .footer-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  align-items: end;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 36px;
   color: #a6a39d;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   font-family: var(--display);
-  font-size: 0.68rem;
-  line-height: 1.6;
+  font-size: 0.62rem;
+  line-height: 1;
 }
 
 .footer-brand {
-  width: 130px;
+  width: 90px;
+  height: 50px;
+  display: flex;
+  align-items: center;
 }
 
-.footer-copy {
-  justify-self: end;
+.footer-brand img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.footer-tagline {
+  margin: 0;
+  white-space: nowrap;
+}
+
+.footer-meta {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 26px;
+  white-space: nowrap;
+}
+
+.footer-meta a {
+  color: var(--white);
+  border-bottom: 1px solid rgba(244, 241, 233, 0.45);
+  transition: color 160ms ease, border-color 160ms ease;
+}
+
+.footer-meta a:hover,
+.footer-meta a:focus-visible {
+  color: #d74339;
+  border-color: #d74339;
 }
 
 .inner-page,
 .music-page {
   background: var(--paper);
   color: var(--ink);
+}
+
+.legal-header {
+  padding-top: 92px;
+  padding-bottom: 76px;
+}
+
+.legal-header h1 {
+  margin: 0;
+  text-transform: uppercase;
+  font-family: var(--display);
+  font-size: clamp(5rem, 12vw, 10rem);
+  font-weight: 900;
+  line-height: 0.85;
+  letter-spacing: -0.055em;
+}
+
+.legal-content {
+  max-width: 920px;
+  padding-bottom: 120px;
+}
+
+.legal-section {
+  padding: 42px 0;
+  border-top: 1px solid rgba(11, 11, 11, 0.3);
+}
+
+.legal-section:last-child {
+  border-bottom: 1px solid rgba(11, 11, 11, 0.3);
+}
+
+.legal-section h2,
+.legal-section h3 {
+  text-transform: uppercase;
+  font-family: var(--display);
+  font-weight: 900;
+}
+
+.legal-section h2 {
+  margin: 0 0 24px;
+  font-size: clamp(1.65rem, 3vw, 2.5rem);
+  letter-spacing: -0.025em;
+}
+
+.legal-section h3 {
+  margin: 34px 0 10px;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+}
+
+.legal-section p,
+.legal-section address {
+  max-width: 760px;
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.7;
+  font-style: normal;
+}
+
+.legal-section a {
+  color: var(--red);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.privacy-section {
+  margin-top: 38px;
+}
+
+.privacy-section > .eyebrow {
+  margin-bottom: 20px;
+}
+
+.privacy-section p + p {
+  margin-top: 14px;
+}
+
+.legal-updated {
+  margin-top: 42px !important;
+  color: #6b6862;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-family: var(--display);
+  font-size: 0.68rem !important;
 }
 
 .inner-page .site-header,
@@ -760,11 +890,13 @@ img {
   }
 
   .hero-photo {
-    background-position: 58% center;
+    background-position: 58% 30%;
   }
 
   .hero-logo {
-    width: min(78vw, 570px);
+    width: auto;
+    height: 150px;
+    max-width: 270px;
   }
 
   .intro,
@@ -825,21 +957,50 @@ img {
   }
 
   .hero {
-    min-height: 680px;
-    height: 92svh;
+    min-height: calc(316px + 63.55vw);
+    height: max(100svh, calc(316px + 63.55vw));
+  }
+
+  .hero-photo,
+  .hero-shade {
+    top: 76px;
+    bottom: auto;
+    height: 63.55vw;
   }
 
   .hero-photo {
-    background-position: 64% center;
+    background-position: center;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    transform: none;
   }
 
   .hero-shade {
     background: linear-gradient(90deg, rgba(5, 5, 5, 0.82), rgba(5, 5, 5, 0.24)), linear-gradient(0deg, rgba(5, 5, 5, 0.75), transparent 55%);
   }
 
+  .hero-content {
+    top: calc(76px + 63.55vw);
+    height: auto;
+    min-height: 240px;
+    grid-template-columns: 1fr;
+    align-content: center;
+    gap: 20px;
+    padding: 26px 16px 24px;
+  }
+
   .hero-logo {
-    width: 92vw;
-    margin-left: -18px;
+    width: min(62vw, 230px);
+    height: auto;
+    max-width: 230px;
+    justify-self: center;
+    transform: none;
+  }
+
+  .hero .hero-actions {
+    justify-self: center;
+    justify-content: center;
+    gap: 16px;
   }
 
   .hero-index {
@@ -852,6 +1013,8 @@ img {
 
   .intro,
   .connect {
+    width: 100%;
+    margin-inline: 0;
     padding-inline: 16px;
   }
 
@@ -883,12 +1046,44 @@ img {
   }
 
   .footer-grid {
-    grid-template-columns: 1fr auto;
-    gap: 24px;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 12px;
+    width: calc(100% - 24px);
+    font-size: 0.52rem;
   }
 
-  .footer-grid > p:nth-child(2) {
-    display: none;
+  .site-footer {
+    padding-block: 18px;
+  }
+
+  .footer-brand {
+    width: 62px;
+    height: 38px;
+  }
+
+  .footer-tagline {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .footer-meta {
+    gap: 12px;
+  }
+
+  .legal-header {
+    padding-block: 70px 58px;
+  }
+
+  .legal-header h1 {
+    font-size: 4.7rem;
+  }
+
+  .legal-content {
+    padding-bottom: 82px;
+  }
+
+  .legal-section {
+    padding: 34px 0;
   }
 
   .page-header {

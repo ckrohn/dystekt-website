@@ -10,9 +10,7 @@ import tseslint from "typescript-eslint";
 const eslintConfig = defineConfig([
   globalIgnores([
     ".next/**",
-    "dist/**",
     "out/**",
-    "build/**",
     "next-env.d.ts",
   ]),
   eslint.configs.recommended,
@@ -23,6 +21,10 @@ const eslintConfig = defineConfig([
   jsxA11y.flatConfigs.recommended,
   next.configs["core-web-vitals"],
   {
+    rules: {
+      "@next/next/no-img-element": "off",
+      "jsx-a11y/media-has-caption": "off",
+    },
     languageOptions: {
       globals: {
         ...globals.browser,

@@ -1,0 +1,18 @@
+{
+  "eyebrow": "First signal / new material",
+  "title": ["Sneak", "Peek"],
+  "release": "Unreleased · 2026",
+  "tracks": [
+    {
+      "artist": "Dystekt",
+      "name": "Sneak Peek",
+      "format": "Audio / FLAC",
+      "file": "/media/dystekt-sneak-peek.flac",
+      "mimeType": "audio/flac",
+      "downloadLabel": "Download lossless audio"
+    }
+  ],
+  "note": "This is a work-in-progress glimpse at what we are building. More music is coming. Follow Dystekt to hear it first.",
+  "followLabel": "Follow Dystekt",
+  "followUrl": "https://linktr.ee/dystekt"
+}

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import music from "../../data/music.json";
 import { SiteFooter } from "../components/SiteFooter";
 import { SiteHeader } from "../components/SiteHeader";
 
@@ -16,40 +17,39 @@ export default function MusicPage() {
           <div className="music-photo" aria-hidden="true" />
           <div className="wrap music-layout">
             <div className="music-title-block">
-              <p className="eyebrow">First signal / new material</p>
-              <h1>Sneak<br />Peek</h1>
-              <p>Unreleased · 2026</p>
+              <p className="eyebrow">{music.eyebrow}</p>
+              <h1>{music.title[0]}<br />{music.title[1]}</h1>
+              <p>{music.release}</p>
             </div>
 
-            <div className="player-card">
-              <div className="player-topline">
-                <span>01</span>
-                <span>Audio / FLAC</span>
+            {music.tracks.map((track, index) => (
+              <div className="player-card" key={track.file}>
+                <div className="player-topline">
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                  <span>{track.format}</span>
+                </div>
+                <img src="/media/dystekt-logo.svg" alt="Dystekt" />
+                <div className="track-title">
+                  <span>{track.artist}</span>
+                  <strong>{track.name}</strong>
+                </div>
+                <audio controls preload="metadata">
+                  <source src={track.file} type={track.mimeType} />
+                  Your browser does not support this audio format.
+                </audio>
+                <a className="download-link" href={track.file} download>
+                  {track.downloadLabel} <span aria-hidden="true">↓</span>
+                </a>
               </div>
-              <img src="/media/dystekt-logo.svg" alt="Dystekt" />
-              <div className="track-title">
-                <span>Dystekt</span>
-                <strong>Sneak Peek</strong>
-              </div>
-              <audio controls preload="metadata">
-                <source src="/media/dystekt-sneak-peek.flac" type="audio/flac" />
-                Your browser does not support FLAC audio.
-              </audio>
-              <a className="download-link" href="/media/dystekt-sneak-peek.flac" download>
-                Download lossless audio <span aria-hidden="true">↓</span>
-              </a>
-            </div>
+            ))}
           </div>
         </section>
 
         <section className="music-note wrap">
           <span className="section-mark"><span>NOTE</span></span>
-          <p>
-            This is a work-in-progress glimpse at what we are building. More
-            music is coming. Follow Dystekt to hear it first.
-          </p>
-          <a className="text-link dark-link" href="https://linktr.ee/dystekt" target="_blank" rel="noreferrer">
-            Follow Dystekt <span aria-hidden="true">↗</span>
+          <p>{music.note}</p>
+          <a className="text-link dark-link" href={music.followUrl} target="_blank" rel="noreferrer">
+            {music.followLabel} <span aria-hidden="true">↗</span>
           </a>
         </section>
       </main>

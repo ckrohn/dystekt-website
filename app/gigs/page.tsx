@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import gigs from "../../data/gigs.json";
 import { SiteFooter } from "../components/SiteFooter";
 import { SiteHeader } from "../components/SiteHeader";
 
@@ -7,52 +8,19 @@ export const metadata: Metadata = {
   description: "Upcoming Dystekt live dates and show details.",
 };
 
-const gigs = [
-  {
-    day: "12",
-    month: "09",
-    year: "2026",
-    iso: "2026-09-12",
-    title: "Cologne Cataclysm",
-    venue: "Halle am Rhein",
-    address: "Am Faulbach 2, 51063 Köln",
-    doors: "14:30",
-    start: "15:15",
-    price: "15 € advance · 20 € door",
-    flyer: "/media/cologne-cataclysm-2026.jpg",
-    ticket: "https://www.cologne-cataclysm.de",
-  },
-  {
-    day: "23",
-    month: "10",
-    year: "2026",
-    iso: "2026-10-23",
-    title: "Gift und Galle am Rhein",
-    venue: "Halle am Rhein",
-    address: "Am Faulbach 2, 51063 Köln",
-    doors: "17:00",
-    start: "18:00",
-    price: "10 € at the door",
-    flyer: "/media/gift-und-galle-2026.jpg",
-    ticket: null,
-  },
-] as const;
-
 export default function GigsPage() {
   return (
     <div className="site-shell inner-page">
       <SiteHeader />
       <main>
         <header className="page-header wrap">
-          <p className="eyebrow red">Live / 2026</p>
-          <h1>Gigs</h1>
-          <p className="page-lede">
-            Two nights in Cologne. Amplifiers on, lights down.
-          </p>
+          <p className="eyebrow red">{gigs.eyebrow}</p>
+          <h1>{gigs.title}</h1>
+          <p className="page-lede">{gigs.intro}</p>
         </header>
 
         <section className="gig-list wrap" aria-label="Upcoming gigs">
-          {gigs.map((gig, index) => (
+          {gigs.events.map((gig, index) => (
             <article className="gig-card" key={gig.iso}>
               <div className="gig-number" aria-hidden="true">
                 0{index + 1}

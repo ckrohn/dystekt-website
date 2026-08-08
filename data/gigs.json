@@ -1,0 +1,39 @@
+{
+  "eyebrow": "Live / 2026",
+  "title": "Gigs",
+  "intro": "Upcoming live shows",
+  "events": [
+    {
+      "day": "12",
+      "month": "09",
+      "year": "2026",
+      "iso": "2026-09-12",
+      "dateLabel": "12 September 2026",
+      "title": "Cologne Cataclysm",
+      "venue": "Halle am Rhein",
+      "city": "Cologne",
+      "address": "Am Faulbach 2, 51063 Köln",
+      "doors": "14:30",
+      "start": "15:15",
+      "price": "15 € advance · 20 € door",
+      "flyer": "/media/cologne-cataclysm-2026.jpg",
+      "ticket": "https://www.cologne-cataclysm.de"
+    },
+    {
+      "day": "23",
+      "month": "10",
+      "year": "2026",
+      "iso": "2026-10-23",
+      "dateLabel": "23 October 2026",
+      "title": "Gift und Galle am Rhein",
+      "venue": "Halle am Rhein",
+      "city": "Cologne",
+      "address": "Am Faulbach 2, 51063 Köln",
+      "doors": "17:00",
+      "start": "18:00",
+      "price": "10 € at the door",
+      "flyer": "/media/gift-und-galle-2026.jpg",
+      "ticket": null
+    }
+  ]
+}

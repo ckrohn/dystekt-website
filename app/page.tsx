@@ -1,9 +1,12 @@
 import Link from "next/link";
+import gigs from "../data/gigs.json";
 import { SiteFooter } from "./components/SiteFooter";
 import { SiteHeader } from "./components/SiteHeader";
 import { SocialLinks } from "./components/SocialLinks";
 
 export default function Home() {
+  const nextGig = gigs.events[0];
+
   return (
     <div className="site-shell">
       <SiteHeader />
@@ -63,22 +66,24 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="next-show" aria-labelledby="next-show-title">
-          <div className="wrap next-show-grid">
-            <div>
-              <p className="eyebrow red">Next live impact</p>
-              <h2 id="next-show-title">Cologne Cataclysm</h2>
-              <p className="show-location">Halle am Rhein · Köln</p>
+        {nextGig ? (
+          <section className="next-show" aria-labelledby="next-show-title">
+            <div className="wrap next-show-grid">
+              <div>
+                <p className="eyebrow red">Next live impact</p>
+                <h2 id="next-show-title">{nextGig.title}</h2>
+                <p className="show-location">{nextGig.venue} · {nextGig.city}</p>
+              </div>
+              <div className="show-date" aria-label={nextGig.dateLabel}>
+                <span>{nextGig.day}</span>
+                <span>{nextGig.month} / {nextGig.year.slice(-2)}</span>
+              </div>
+              <Link className="button button-outline" href="/gigs">
+                Full gig details
+              </Link>
             </div>
-            <div className="show-date" aria-label="12 September 2026">
-              <span>12</span>
-              <span>09 / 26</span>
-            </div>
-            <Link className="button button-outline" href="/gigs">
-              Full gig details
-            </Link>
-          </div>
-        </section>
+          </section>
+        ) : null}
 
         <section className="section connect wrap" aria-labelledby="connect-title">
           <div className="section-mark">
