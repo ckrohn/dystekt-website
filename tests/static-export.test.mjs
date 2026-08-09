@@ -85,6 +85,14 @@ test("copies deployable media and GitHub Pages files", async () => {
   ]);
 
   assert.equal((await readFile(new URL("CNAME", output), "utf8")).trim(), "dystekt.band");
+  assert.equal(
+    (await readFile(new URL("../CNAME", import.meta.url), "utf8")).trim(),
+    "dystekt.band",
+  );
+  assert.equal(
+    (await readFile(new URL("../public/CNAME", import.meta.url), "utf8")).trim(),
+    "dystekt.band",
+  );
 
   const sitemap = await readFile(new URL("sitemap.xml", output), "utf8");
   assert.match(sitemap, /https:\/\/dystekt\.band\/gigs\/2026-09-12\//);
