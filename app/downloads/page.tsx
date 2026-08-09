@@ -6,6 +6,9 @@ import { SiteHeader } from "../components/SiteHeader";
 export const metadata: Metadata = {
   title: "Downloads",
   description: "Download the Dystekt press kit and technical rider.",
+  alternates: {
+    canonical: "/downloads/",
+  },
 };
 
 export default function DownloadsPage() {

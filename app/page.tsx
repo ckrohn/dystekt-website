@@ -1,8 +1,15 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import gigs from "../data/gigs.json";
 import { SiteFooter } from "./components/SiteFooter";
 import { SiteHeader } from "./components/SiteHeader";
 import { SocialLinks } from "./components/SocialLinks";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "/",
+  },
+};
 
 export default function Home() {
   const nextGig = gigs.events[0];

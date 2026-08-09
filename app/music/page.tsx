@@ -6,6 +6,9 @@ import { SiteHeader } from "../components/SiteHeader";
 export const metadata: Metadata = {
   title: "Music",
   description: "Listen to the latest Dystekt sneak peek.",
+  alternates: {
+    canonical: "/music/",
+  },
 };
 
 export default function MusicPage() {

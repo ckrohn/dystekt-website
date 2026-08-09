@@ -28,6 +28,13 @@ npm run dev
 Run `npm run build` to generate the complete static website in `out/`. The
 included GitHub Actions workflow publishes that directory, and `npm run deploy`
 can publish it manually through the `gh-pages` package. The generated output
-includes `CNAME` for `www.dystekt.band` and a `.nojekyll` marker.
+includes `CNAME` for `dystekt.band` and a `.nojekyll` marker.
 
 Run the production build and static-output checks together with `npm test`.
+
+## SEO deployment checklist
+
+- Verify `https://dystekt.band` in Google Search Console and Bing Webmaster Tools.
+- Submit `https://dystekt.band/sitemap.xml` in both services.
+- Inspect the generated event URLs with Google's Rich Results Test after deployment.
+- Confirm that `https://www.dystekt.band` continues to redirect to the apex domain over HTTPS.

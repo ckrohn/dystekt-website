@@ -139,7 +139,7 @@ img {
 }
 
 .hero-photo {
-  background: url("/media/dystekt-band.jpg") center 30% / cover no-repeat;
+  background: url("/media/dystekt-band.webp") center 30% / cover no-repeat;
   filter: contrast(1.08);
   transform: scale(1.01);
 }
@@ -620,6 +620,21 @@ img {
   line-height: 1.5;
 }
 
+.event-header {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 36px;
+}
+
+.event-header h1 {
+  min-width: 0;
+  font-size: clamp(4rem, 10vw, 9rem);
+}
+
+.event-header .page-lede {
+  max-width: 560px;
+  margin-bottom: 0;
+}
+
 .gig-list {
   padding-bottom: 140px;
 }
@@ -832,7 +847,7 @@ img {
 }
 
 .music-photo {
-  background: url("/media/dystekt-band.jpg") center / cover no-repeat;
+  background: url("/media/dystekt-band.webp") center / cover no-repeat;
   opacity: 0.24;
   filter: contrast(1.15);
 }
@@ -1207,6 +1222,10 @@ img {
 
   .page-header h1 {
     font-size: 6rem;
+  }
+
+  .event-header h1 {
+    font-size: clamp(3rem, 14vw, 6rem);
   }
 
   .gig-list {

@@ -5,6 +5,13 @@ import { SiteHeader } from "../components/SiteHeader";
 export const metadata: Metadata = {
   title: "Imprint & Privacy",
   description: "Legal notice, contact information and privacy information for Dystekt.",
+  alternates: {
+    canonical: "/imprint/",
+  },
+  robots: {
+    index: false,
+    follow: true,
+  },
 };
 
 export default function ImprintPage() {
@@ -22,7 +29,6 @@ export default function ImprintPage() {
             <h2 id="provider-heading">Information pursuant to § 5 DDG</h2>
             <address>
               Christopher Krohn<br />
-              Dystekt<br />
               Herler Str. 61<br />
               51067 Cologne<br />
               Germany
@@ -39,7 +45,8 @@ export default function ImprintPage() {
             <p>
               Christopher Krohn<br />
               Herler Str. 61<br />
-              51067 Cologne, Germany
+              51067 Cologne<br />
+              Germany
             </p>
           </section>
 

@@ -8,6 +8,11 @@ async function html(route = "") {
   return readFile(new URL(`${route ? `${route}/` : ""}index.html`, output), "utf8");
 }
 
+function jsonLd(htmlContent) {
+  return [...htmlContent.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)]
+    .map((match) => JSON.parse(match[1]));
+}
+
 test("exports every public page as static HTML", async () => {
   const [home, gigsHtml, musicHtml, downloadsHtml, imprint, gigsConfig, musicConfig, downloadsConfig] = await Promise.all([
     html(),
@@ -23,12 +28,28 @@ test("exports every public page as static HTML", async () => {
   assert.match(home, /five-piece melodic death metal band founded in July/);
   assert.match(home, /Stay up to date\./);
   assert.match(home, /social-icon/);
+  assert.match(home, /rel="canonical" href="https:\/\/dystekt\.band\/"/);
+  assert.match(home, /dystekt-social-preview\.jpg/);
+  assert.ok(jsonLd(home).some((entry) => entry["@type"] === "MusicGroup" && entry.name === "Dystekt"));
+  assert.ok(jsonLd(home).some((entry) => entry["@type"] === "WebSite" && entry.name === "Dystekt"));
   for (const platform of ["Instagram", "Bandcamp", "Linktree", "YouTube", "X / Twitter"]) {
     assert.ok(home.includes(platform));
   }
   for (const gig of gigsConfig.events) {
     assert.ok(gigsHtml.includes(gig.title));
     assert.ok(gigsHtml.includes(gig.flyer));
+    assert.ok(gigsHtml.includes(gig.image));
+    assert.ok(gigsHtml.includes(`/gigs/${gig.iso}`));
+
+    const eventHtml = await html(`gigs/${gig.iso}`);
+    const eventData = jsonLd(eventHtml).find((entry) => entry["@type"] === "Event");
+    assert.equal(eventData.name, gig.title);
+    assert.equal(eventData.startDate, gig.startDate);
+    assert.equal(eventData.location.name, gig.venue);
+    assert.equal(eventData.location.address.addressCountry, "DE");
+    assert.equal(eventData.performer.name, "Dystekt");
+    assert.ok(eventHtml.includes(`<meta name="twitter:title" content="${gig.title} — Dystekt"`));
+    assert.ok(eventHtml.includes(`<meta name="twitter:image" content="https://dystekt.band${gig.image}"`));
   }
   for (const track of musicConfig.tracks) {
     assert.ok(musicHtml.includes(track.name));
@@ -41,22 +62,37 @@ test("exports every public page as static HTML", async () => {
   assert.match(imprint, /Christopher Krohn/);
   assert.match(imprint, /contact@dystekt\.band/);
   assert.match(imprint, /Herler Str\. 61/);
+  assert.match(imprint, /<meta name="robots" content="noindex, follow"/);
 });
 
 test("copies deployable media and GitHub Pages files", async () => {
   await Promise.all([
     access(new URL("media/dystekt-band.jpg", output)),
+    access(new URL("media/dystekt-band.webp", output)),
+    access(new URL("media/dystekt-social-preview.jpg", output)),
     access(new URL("media/dystekt-logo.svg", output)),
     access(new URL("media/dystekt-sneak-peek.flac", output)),
     access(new URL("media/Dystekt_Presskit.zip", output)),
     access(new URL("media/Dystekt_Tech_Rider.pdf", output)),
     access(new URL("media/cologne-cataclysm-2026.jpg", output)),
+    access(new URL("media/cologne-cataclysm-2026.webp", output)),
     access(new URL("media/gift-und-galle-2026.jpg", output)),
+    access(new URL("media/gift-und-galle-2026.webp", output)),
+    access(new URL("sitemap.xml", output)),
+    access(new URL("robots.txt", output)),
     access(new URL("CNAME", output)),
     access(new URL(".nojekyll", output)),
   ]);
 
-  assert.equal((await readFile(new URL("CNAME", output), "utf8")).trim(), "www.dystekt.band");
+  assert.equal((await readFile(new URL("CNAME", output), "utf8")).trim(), "dystekt.band");
+
+  const sitemap = await readFile(new URL("sitemap.xml", output), "utf8");
+  assert.match(sitemap, /https:\/\/dystekt\.band\/gigs\/2026-09-12\//);
+  assert.doesNotMatch(sitemap, /\/imprint\//);
+
+  const robots = await readFile(new URL("robots.txt", output), "utf8");
+  assert.match(robots, /Allow: \//);
+  assert.match(robots, /Sitemap: https:\/\/dystekt\.band\/sitemap\.xml/);
 });
 
 test("uses only the dependencies needed for this static site", async () => {
