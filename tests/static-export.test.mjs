@@ -22,6 +22,10 @@ test("exports every public page as static HTML", async () => {
 
   assert.match(home, /five-piece melodic death metal band founded in July/);
   assert.match(home, /Stay up to date\./);
+  assert.match(home, /social-icon/);
+  for (const platform of ["Instagram", "Bandcamp", "Linktree", "YouTube", "X / Twitter"]) {
+    assert.ok(home.includes(platform));
+  }
   for (const gig of gigsConfig.events) {
     assert.ok(gigsHtml.includes(gig.title));
     assert.ok(gigsHtml.includes(gig.flyer));

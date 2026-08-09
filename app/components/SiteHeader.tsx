@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SocialIcon } from "./SocialLinks";
 
 export function SiteHeader() {
   return (
@@ -18,7 +19,9 @@ export function SiteHeader() {
         target="_blank"
         rel="noreferrer"
       >
-        Instagram <span aria-hidden="true">↗</span>
+        <SocialIcon name="instagram" />
+        <span>Instagram</span>
+        <span aria-hidden="true">↗</span>
       </a>
     </header>
   );

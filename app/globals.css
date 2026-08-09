@@ -106,7 +106,16 @@ img {
 }
 
 .header-social {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
   justify-self: end;
+}
+
+.header-social .social-icon {
+  width: 17px;
+  height: 17px;
+  color: currentColor;
 }
 
 .hero {
@@ -422,10 +431,16 @@ img {
   padding-left: 12px;
 }
 
-.social-number {
-  font-size: 0.65rem;
-  letter-spacing: 0.1em;
-  font-weight: 700;
+.social-icon {
+  width: 28px;
+  height: 28px;
+  color: var(--red);
+  transition: transform 160ms ease;
+}
+
+.social-list a:hover .social-icon,
+.social-list a:focus-visible .social-icon {
+  transform: scale(1.08);
 }
 
 .site-footer {
@@ -1138,6 +1153,11 @@ img {
   .social-list a {
     grid-template-columns: 42px 1fr auto;
     font-size: 1.05rem;
+  }
+
+  .social-icon {
+    width: 24px;
+    height: 24px;
   }
 
   .footer-grid {
