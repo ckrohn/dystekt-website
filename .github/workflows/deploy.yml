@@ -1,8 +1,13 @@
 name: Deploy to GitHub pages
 on:
   push:
-    branches-ignore:
-      - dependabot/**
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
 
 jobs:
   build:
