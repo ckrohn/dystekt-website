@@ -141,11 +141,15 @@ img {
 .hero-photo {
   background: url("/media/dystekt-band.webp") center 30% / cover no-repeat;
   filter: contrast(1.08);
-  transform: scale(1.01);
 }
 
 .hero-shade {
-  background: linear-gradient(90deg, rgba(5, 5, 5, 0.8) 0%, rgba(5, 5, 5, 0.18) 56%, rgba(5, 5, 5, 0.2) 100%), linear-gradient(0deg, rgba(5, 5, 5, 0.72) 0%, transparent 45%);
+  background: radial-gradient(
+    ellipse at center,
+    transparent 72%,
+    rgba(5, 5, 5, 0.08) 88%,
+    rgba(5, 5, 5, 0.32) 100%
+  );
 }
 
 .hero-content {
@@ -1098,10 +1102,6 @@ img {
     background-size: 100% auto;
     background-repeat: no-repeat;
     transform: none;
-  }
-
-  .hero-shade {
-    background: linear-gradient(90deg, rgba(5, 5, 5, 0.82), rgba(5, 5, 5, 0.24)), linear-gradient(0deg, rgba(5, 5, 5, 0.75), transparent 55%);
   }
 
   .hero-content {
