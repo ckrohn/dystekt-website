@@ -7,11 +7,12 @@ Official website for Dystekt, a melodic death metal band from Cologne, Germany.
 - `/` — band introduction and social links
 - `/gigs` — upcoming dates, details, and flyers
 - `/music` — the current sneak peek player and lossless download
+- `/downloads` — press kit, tech rider, and future downloadable resources
 - `/imprint` — contact, legal notice, and privacy information
 
 Gig entries live in `data/gigs.json`; music and audio-player entries live in
-`data/music.json`. Add the referenced flyers and audio files under
-`public/media/`.
+`data/music.json`; downloadable resources live in `data/downloads.json`. Add
+the referenced files under `public/media/`.
 
 ## Local development
 

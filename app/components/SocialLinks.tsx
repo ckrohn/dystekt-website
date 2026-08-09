@@ -1,9 +1,9 @@
 const links = [
   ["Instagram", "https://www.instagram.com/dystektofficial"],
+  ["Bandcamp", "https://dystekt.bandcamp.com"],
+  ["Linktree", "https://linktr.ee/dystekt"],
   ["YouTube", "https://www.youtube.com/@Dystekt"],
   ["X / Twitter", "https://x.com/dystekt"],
-  ["Linktree", "https://linktr.ee/dystekt"],
-  ["Official site", "https://www.dystekt.band"],
 ] as const;
 
 export function SocialLinks() {

@@ -1,0 +1,21 @@
+{
+  "eyebrow": "Press / Production",
+  "title": "Downloads",
+  "intro": "Press materials and technical information for promoters, venues, and media.",
+  "items": [
+    {
+      "name": "Press kit",
+      "description": "Band information, press photos, and promotional material.",
+      "file": "/media/Dystekt_Presskit.zip",
+      "format": "ZIP archive",
+      "downloadLabel": "Download press kit"
+    },
+    {
+      "name": "Tech rider",
+      "description": "Technical requirements and stage information for Dystekt live shows.",
+      "file": "/media/Dystekt_Tech_Rider.pdf",
+      "format": "PDF document",
+      "downloadLabel": "Download tech rider"
+    }
+  ]
+}

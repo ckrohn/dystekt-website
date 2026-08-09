@@ -9,13 +9,15 @@ async function html(route = "") {
 }
 
 test("exports every public page as static HTML", async () => {
-  const [home, gigsHtml, musicHtml, imprint, gigsConfig, musicConfig] = await Promise.all([
+  const [home, gigsHtml, musicHtml, downloadsHtml, imprint, gigsConfig, musicConfig, downloadsConfig] = await Promise.all([
     html(),
     html("gigs"),
     html("music"),
+    html("downloads"),
     html("imprint"),
     readFile(new URL("../data/gigs.json", import.meta.url), "utf8").then(JSON.parse),
     readFile(new URL("../data/music.json", import.meta.url), "utf8").then(JSON.parse),
+    readFile(new URL("../data/downloads.json", import.meta.url), "utf8").then(JSON.parse),
   ]);
 
   assert.match(home, /five-piece melodic death metal band founded in July/);
@@ -28,6 +30,10 @@ test("exports every public page as static HTML", async () => {
     assert.ok(musicHtml.includes(track.name));
     assert.ok(musicHtml.includes(track.file));
   }
+  for (const download of downloadsConfig.items) {
+    assert.ok(downloadsHtml.includes(download.name));
+    assert.ok(downloadsHtml.includes(download.file));
+  }
   assert.match(imprint, /Christopher Krohn/);
   assert.match(imprint, /contact@dystekt\.band/);
   assert.match(imprint, /Herler Str\. 61/);
@@ -38,6 +44,8 @@ test("copies deployable media and GitHub Pages files", async () => {
     access(new URL("media/dystekt-band.jpg", output)),
     access(new URL("media/dystekt-logo.svg", output)),
     access(new URL("media/dystekt-sneak-peek.flac", output)),
+    access(new URL("media/Dystekt_Presskit.zip", output)),
+    access(new URL("media/Dystekt_Tech_Rider.pdf", output)),
     access(new URL("media/cologne-cataclysm-2026.jpg", output)),
     access(new URL("media/gift-und-galle-2026.jpg", output)),
     access(new URL("CNAME", output)),
