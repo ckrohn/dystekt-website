@@ -763,6 +763,10 @@ img {
   padding-block: 100px;
 }
 
+.music-layout > * {
+  min-width: 0;
+}
+
 .music-title-block h1 {
   font-size: clamp(6rem, 14vw, 13rem);
 }
@@ -931,6 +935,10 @@ img {
 
   .music-layout {
     grid-template-columns: 1fr;
+  }
+
+  .music-title-block h1 {
+    font-size: clamp(4rem, 11vw, 7rem);
   }
 
   .music-title-block h1 br {
@@ -1130,7 +1138,11 @@ img {
   }
 
   .music-title-block h1 {
-    font-size: 6rem;
+    font-size: clamp(4.5rem, 22vw, 6rem);
+  }
+
+  .music-title-block h1 br {
+    display: initial;
   }
 
   .player-card {
