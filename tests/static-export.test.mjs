@@ -67,6 +67,8 @@ test("exports every public page as static HTML", async () => {
     assert.ok(eventHtml.includes(`<meta name="twitter:title" content="${gig.title} — Dystekt"`));
     assert.ok(eventHtml.includes(`<meta name="twitter:image" content="https://dystekt.band${gig.image}"`));
     assert.ok(eventHtml.includes(`class="flyer-lightbox"`));
+    assert.ok(eventHtml.includes(`${gig.image.replace(".webp", "-320.webp")} 320w`));
+    assert.ok(eventHtml.includes(`${gig.image.replace(".webp", "-1000.webp")} 1000w`));
     assert.ok(eventHtml.includes("View flyer"));
     if (gig.info) {
       assert.ok(eventHtml.includes("About the show"));
@@ -93,6 +95,9 @@ test("copies deployable media and GitHub Pages files", async () => {
   await Promise.all([
     access(new URL("media/dystekt-band.jpg", output)),
     access(new URL("media/dystekt-band.webp", output)),
+    access(new URL("media/dystekt-band-640.webp", output)),
+    access(new URL("media/dystekt-band-2560.webp", output)),
+    access(new URL("media/dystekt-band-3840.webp", output)),
     access(new URL("media/dystekt-social-preview.jpg", output)),
     access(new URL("media/dystekt-logo.svg", output)),
     access(new URL("media/dystekt-sneak-peek.flac", output)),
@@ -100,6 +105,8 @@ test("copies deployable media and GitHub Pages files", async () => {
     access(new URL("media/Dystekt_Tech_Rider.pdf", output)),
     access(new URL("media/cologne-cataclysm-2026.jpg", output)),
     access(new URL("media/cologne-cataclysm-2026.webp", output)),
+    access(new URL("media/cologne-cataclysm-2026-320.webp", output)),
+    access(new URL("media/cologne-cataclysm-2026-1000.webp", output)),
     access(new URL("media/gift-und-galle-2026.jpg", output)),
     access(new URL("media/gift-und-galle-2026.webp", output)),
     access(new URL("sitemap.xml", output)),

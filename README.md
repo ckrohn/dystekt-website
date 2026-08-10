@@ -19,7 +19,8 @@ Instagram URLs. Set `info` to an array of
 heading/paragraph sections to show formatted copy on an event detail page, or to `null`
 to omit it. Music and audio-player entries live in
 `data/music.json`; downloadable resources live in `data/downloads.json`. Add
-the referenced files under `public/media/`.
+the referenced source files under `public/media/`. `npm run build` regenerates responsive
+WebP variants for the band photo and every event flyer before exporting the site.
 
 ## Local development
 

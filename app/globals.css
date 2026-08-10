@@ -139,7 +139,14 @@ img {
 }
 
 .hero-photo {
-  background: url("/media/dystekt-band.webp") center 30% / cover no-repeat;
+  background-image: url("/media/dystekt-band-1440.webp");
+  background-image: image-set(
+    url("/media/dystekt-band-1440.webp") 1x,
+    url("/media/dystekt-band-2880.webp") 2x
+  );
+  background-position: center 30%;
+  background-size: cover;
+  background-repeat: no-repeat;
   filter: contrast(1.08);
 }
 
@@ -851,7 +858,14 @@ img {
 }
 
 .music-photo {
-  background: url("/media/dystekt-band.webp") center / cover no-repeat;
+  background-image: url("/media/dystekt-band-960.webp");
+  background-image: image-set(
+    url("/media/dystekt-band-960.webp") 1x,
+    url("/media/dystekt-band-1920.webp") 2x
+  );
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   opacity: 0.24;
   filter: contrast(1.15);
 }
@@ -1500,4 +1514,31 @@ img {
 .gig-bands a:focus-visible {
   color: var(--red);
   border-color: var(--red);
+}
+
+@media (max-width: 760px) {
+  .hero-photo,
+  .music-photo {
+    background-image: url("/media/dystekt-band-640.webp");
+    background-image: image-set(
+      url("/media/dystekt-band-640.webp") 1x,
+      url("/media/dystekt-band-1440.webp") 2x
+    );
+  }
+}
+
+@media (min-width: 1600px) {
+  .hero-photo {
+    background-image: url("/media/dystekt-band-1920.webp");
+    background-image: image-set(
+      url("/media/dystekt-band-1920.webp") 1x,
+      url("/media/dystekt-band.webp") 2x
+    );
+  }
+}
+
+@media (min-width: 2560px) {
+  .hero-photo {
+    background-image: url("/media/dystekt-band.webp");
+  }
 }

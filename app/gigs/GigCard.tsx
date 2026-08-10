@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRef } from "react";
-import { formatGigPrice, formatVenueAddress, getGigDateParts, getGigIso, getVenue, type Gig } from "../lib/gigs";
+import { formatGigPrice, formatVenueAddress, getGigDateParts, getGigIso, getResponsiveImageSrcSet, getVenue, type Gig } from "../lib/gigs";
 
 export function GigCard({
   gig,
@@ -39,8 +39,11 @@ export function GigCard({
       >
         <img
           src={gig.image}
+          srcSet={getResponsiveImageSrcSet(gig.image)}
+          sizes="(max-width: 760px) calc(100vw - 48px), (max-width: 1100px) 35vw, 430px"
           width={gig.imageWidth}
           height={gig.imageHeight}
+          loading={index === 0 ? "eager" : "lazy"}
           alt={`${gig.title} event flyer`}
         />
       </button>
@@ -101,7 +104,16 @@ export function GigCard({
           <button type="button" className="flyer-lightbox-close" aria-label="Close flyer" onClick={closeFlyer}>
             <span aria-hidden="true">×</span>
           </button>
-          <img src={gig.flyer} alt={`${gig.title} event flyer, enlarged`} />
+          <img
+            src={gig.image}
+            srcSet={getResponsiveImageSrcSet(gig.image)}
+            sizes="86vw"
+            width={gig.imageWidth}
+            height={gig.imageHeight}
+            loading="lazy"
+            decoding="async"
+            alt={`${gig.title} event flyer, enlarged`}
+          />
         </div>
       </dialog>
     </article>

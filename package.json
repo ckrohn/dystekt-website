@@ -11,7 +11,9 @@
     "dev": "next dev",
     "build": "next build",
     "test": "npm run build && node --test tests/static-export.test.mjs",
-    "lint": "eslint . --ignore-pattern out --ignore-pattern .next"
+    "lint": "eslint . --ignore-pattern out --ignore-pattern .next",
+    "images": "node scripts/generate-responsive-images.mjs",
+    "prebuild": "npm run images"
   },
   "dependencies": {
     "next": "16.3.0",
@@ -31,6 +33,7 @@
     "eslint-plugin-react-hooks": "7.1.1",
     "gh-pages": "^6.3.0",
     "globals": "17.9.0",
+    "sharp": "^0.35.3",
     "tailwindcss": "4.3.3",
     "typescript": "6.0.3",
     "typescript-eslint": "8.66.0"

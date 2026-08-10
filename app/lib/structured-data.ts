@@ -19,7 +19,7 @@ export const bandStructuredData = {
     alternateName: "Köln",
     addressCountry: "DE",
   },
-  image: `${siteUrl}/media/dystekt-band.webp`,
+  image: `${siteUrl}/media/dystekt-band-1440.webp`,
   logo: `${siteUrl}/media/dystekt-logo.svg`,
   sameAs: [
     "https://www.instagram.com/dystektofficial",

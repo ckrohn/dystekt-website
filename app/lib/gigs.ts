@@ -8,6 +8,14 @@ const monthNames = [
   "July", "August", "September", "October", "November", "December",
 ] as const;
 
+export function getResponsiveImageSrcSet(src: string) {
+  const extensionIndex = src.lastIndexOf(".");
+  const base = src.slice(0, extensionIndex);
+  return [320, 480, 720, 1000]
+    .map((width) => `${base}-${width}.webp ${width}w`)
+    .join(", ");
+}
+
 export function getGigIso(gig: Gig) {
   return gig.startDate.slice(0, 10);
 }
