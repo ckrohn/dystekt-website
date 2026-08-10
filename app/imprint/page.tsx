@@ -20,7 +20,7 @@ export default function ImprintPage() {
     <div className="site-shell inner-page legal-page">
       <SiteHeader />
       <main>
-        <Breadcrumbs items={[{ name: "Dystekt", href: "/" }, { name: "Imprint", href: "/imprint/" }]} />
+        <Breadcrumbs items={[{ name: "Dystekt", href: "/" }, { name: "Imprint", href: "/imprint/" }]} showNavigation={false} />
         <header className="legal-header wrap">
           <p className="eyebrow red">Legal / Contact</p>
           <h1>Imprint</h1>

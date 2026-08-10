@@ -8,7 +8,13 @@ type BreadcrumbItem = {
 
 const siteUrl = "https://dystekt.band";
 
-export function Breadcrumbs({ items }: { items: BreadcrumbItem[] }) {
+export function Breadcrumbs({
+  items,
+  showNavigation = true,
+}: {
+  items: BreadcrumbItem[];
+  showNavigation?: boolean;
+}) {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -23,8 +29,9 @@ export function Breadcrumbs({ items }: { items: BreadcrumbItem[] }) {
   return (
     <>
       <JsonLd data={structuredData} />
-      <nav className="breadcrumb wrap" aria-label="Breadcrumb">
-        <ol>
+      {showNavigation ? (
+        <nav className="breadcrumb wrap" aria-label="Breadcrumb">
+          <ol>
           {items.map((item, index) => (
             <li
               aria-current={index === items.length - 1 ? "page" : undefined}
@@ -37,8 +44,9 @@ export function Breadcrumbs({ items }: { items: BreadcrumbItem[] }) {
               )}
             </li>
           ))}
-        </ol>
-      </nav>
+          </ol>
+        </nav>
+      ) : null}
     </>
   );
 }

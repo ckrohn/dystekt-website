@@ -31,7 +31,7 @@ export default function ContactPage() {
     <div className="site-shell inner-page contact-page">
       <SiteHeader />
       <main>
-        <Breadcrumbs items={[{ name: "Dystekt", href: "/" }, { name: "Contact", href: "/contact/" }]} />
+        <Breadcrumbs items={[{ name: "Dystekt", href: "/" }, { name: "Contact", href: "/contact/" }]} showNavigation={false} />
         <header className="page-header contact-header wrap">
           <p className="eyebrow red">Booking / Press</p>
           <h1>Contact</h1>

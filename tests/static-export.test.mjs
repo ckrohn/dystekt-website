@@ -56,7 +56,7 @@ test("exports every public page as static HTML", async () => {
       breadcrumb.itemListElement.map((item) => item.name),
       ["Dystekt", label],
     );
-    assert.ok(page.includes('aria-label="Breadcrumb"'));
+    assert.ok(!page.includes('aria-label="Breadcrumb"'));
   }
   for (const gig of gigsConfig.events) {
     const iso = gig.startDate.slice(0, 10);

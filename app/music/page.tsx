@@ -17,7 +17,7 @@ export default function MusicPage() {
     <div className="site-shell music-page">
       <SiteHeader />
       <main>
-        <Breadcrumbs items={[{ name: "Dystekt", href: "/" }, { name: "Music", href: "/music/" }]} />
+        <Breadcrumbs items={[{ name: "Dystekt", href: "/" }, { name: "Music", href: "/music/" }]} showNavigation={false} />
         <section className="music-hero">
           <div className="music-photo" aria-hidden="true" />
           <div className="wrap music-layout">
