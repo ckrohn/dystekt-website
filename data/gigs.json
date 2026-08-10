@@ -4,52 +4,46 @@
   "intro": "Upcoming live shows",
   "events": [
     {
-      "day": "12",
-      "month": "09",
-      "year": "2026",
-      "iso": "2026-09-12",
       "startDate": "2026-09-12T15:15:00+02:00",
-      "dateLabel": "12 September 2026",
+      "endDate": "2026-09-12T22:00:00+02:00",
       "title": "Cologne Cataclysm",
-      "venue": "Halle am Rhein",
-      "city": "Cologne",
-      "address": "Am Faulbach 2, 51063 Köln",
-      "streetAddress": "Am Faulbach 2",
-      "postalCode": "51063",
-      "addressLocality": "Köln",
-      "addressCountry": "DE",
       "doors": "14:30",
       "start": "15:15",
-      "price": "15 € advance · 20 € door",
+      "organizer": "Martyrion",
       "flyer": "/media/cologne-cataclysm-2026.jpg",
       "image": "/media/cologne-cataclysm-2026.webp",
       "imageWidth": 1000,
       "imageHeight": 1419,
-      "ticket": "https://www.cologne-cataclysm.de"
+      "ticket": "https://www.cologne-cataclysm.de",
+      "venueId": "halle-am-rhein",
+      "presalePrice": 15,
+      "doorPrice": 20
     },
     {
-      "day": "23",
-      "month": "10",
-      "year": "2026",
-      "iso": "2026-10-23",
       "startDate": "2026-10-23T18:00:00+02:00",
-      "dateLabel": "23 October 2026",
+      "endDate": "2026-10-23T22:00:00+02:00",
       "title": "Gift und Galle am Rhein",
-      "venue": "Halle am Rhein",
-      "city": "Cologne",
-      "address": "Am Faulbach 2, 51063 Köln",
-      "streetAddress": "Am Faulbach 2",
-      "postalCode": "51063",
-      "addressLocality": "Köln",
-      "addressCountry": "DE",
       "doors": "17:00",
       "start": "18:00",
-      "price": "10 € at the door",
+      "organizer": "Snuffed",
       "flyer": "/media/gift-und-galle-2026.jpg",
       "image": "/media/gift-und-galle-2026.webp",
       "imageWidth": 1000,
       "imageHeight": 1333,
-      "ticket": null
+      "ticket": null,
+      "venueId": "halle-am-rhein",
+      "presalePrice": null,
+      "doorPrice": 10
+    }
+  ],
+  "venues": [
+    {
+      "id": "halle-am-rhein",
+      "name": "Halle am Rhein",
+      "street": "Am Faulbach 2",
+      "postalCode": "51063",
+      "city": "Köln",
+      "country": "DE"
     }
   ]
 }

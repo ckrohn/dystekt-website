@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { Gig } from "../lib/structured-data";
+import { formatGigPrice, formatVenueAddress, getGigDateParts, getGigIso, getVenue, type Gig } from "../lib/gigs";
 
 export function GigCard({
   gig,
@@ -10,6 +10,9 @@ export function GigCard({
   index: number;
   showDetailLink?: boolean;
 }) {
+  const date = getGigDateParts(gig);
+  const venue = getVenue(gig);
+
   return (
     <article className="gig-card">
       <div className="gig-number" aria-hidden="true">
@@ -30,18 +33,18 @@ export function GigCard({
         />
       </a>
       <div className="gig-info">
-        <time dateTime={gig.iso} className="gig-date">
-          <strong>{gig.day}</strong>
-          <span>{gig.month} / {gig.year}</span>
+        <time dateTime={getGigIso(gig)} className="gig-date">
+          <strong>{date.day}</strong>
+          <span>{date.month} / {date.year}</span>
         </time>
         <div>
           <h2>{gig.title}</h2>
-          <p className="gig-venue">{gig.venue}</p>
+          <p className="gig-venue">{venue.name}</p>
         </div>
         <dl className="gig-details">
-          <div><dt>Address</dt><dd>{gig.address}</dd></div>
+          <div><dt>Address</dt><dd>{formatVenueAddress(venue)}</dd></div>
           <div><dt>Doors / Start</dt><dd>{gig.doors} / {gig.start}</dd></div>
-          <div><dt>Entry</dt><dd>{gig.price}</dd></div>
+          <div><dt>Entry</dt><dd>{formatGigPrice(gig)}</dd></div>
         </dl>
         <div className="gig-actions">
           {gig.ticket ? (
@@ -52,7 +55,7 @@ export function GigCard({
             <span className="door-note">Door tickets · no presale listed</span>
           )}
           {showDetailLink ? (
-            <Link className="text-link dark-link" href={`/gigs/${gig.iso}`}>
+            <Link className="text-link dark-link" href={`/gigs/${getGigIso(gig)}`}>
               Event details <span aria-hidden="true">→</span>
             </Link>
           ) : null}

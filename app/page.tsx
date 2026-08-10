@@ -4,6 +4,7 @@ import gigs from "../data/gigs.json";
 import { SiteFooter } from "./components/SiteFooter";
 import { SiteHeader } from "./components/SiteHeader";
 import { SocialLinks } from "./components/SocialLinks";
+import { getGigDateParts, getVenue } from "./lib/gigs";
 
 export const metadata: Metadata = {
   alternates: {
@@ -13,6 +14,8 @@ export const metadata: Metadata = {
 
 export default function Home() {
   const nextGig = gigs.events[0];
+  const nextGigDate = nextGig ? getGigDateParts(nextGig) : null;
+  const nextGigVenue = nextGig ? getVenue(nextGig) : null;
 
   return (
     <div className="site-shell">
@@ -79,11 +82,11 @@ export default function Home() {
               <div>
                 <p className="eyebrow red">Next live impact</p>
                 <h2 id="next-show-title">{nextGig.title}</h2>
-                <p className="show-location">{nextGig.venue} · {nextGig.city}</p>
+                <p className="show-location">{nextGigVenue?.name} · {nextGigVenue?.city}</p>
               </div>
-              <div className="show-date" aria-label={nextGig.dateLabel}>
-                <span>{nextGig.day}</span>
-                <span>{nextGig.month} / {nextGig.year.slice(-2)}</span>
+              <div className="show-date" aria-label={nextGigDate?.label}>
+                <span>{nextGigDate?.day}</span>
+                <span>{nextGigDate?.month} / {nextGigDate?.shortYear}</span>
               </div>
               <Link className="button button-outline" href="/gigs">
                 Full gig details

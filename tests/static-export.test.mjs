@@ -36,17 +36,25 @@ test("exports every public page as static HTML", async () => {
     assert.ok(home.includes(platform));
   }
   for (const gig of gigsConfig.events) {
+    const iso = gig.startDate.slice(0, 10);
+    const venue = gigsConfig.venues.find((entry) => entry.id === gig.venueId);
+    assert.ok(venue);
     assert.ok(gigsHtml.includes(gig.title));
     assert.ok(gigsHtml.includes(gig.flyer));
     assert.ok(gigsHtml.includes(gig.image));
-    assert.ok(gigsHtml.includes(`/gigs/${gig.iso}`));
+    assert.ok(gigsHtml.includes(`/gigs/${iso}`));
 
-    const eventHtml = await html(`gigs/${gig.iso}`);
+    const eventHtml = await html(`gigs/${iso}`);
     const eventData = jsonLd(eventHtml).find((entry) => entry["@type"] === "Event");
     assert.equal(eventData.name, gig.title);
     assert.equal(eventData.startDate, gig.startDate);
-    assert.equal(eventData.location.name, gig.venue);
-    assert.equal(eventData.location.address.addressCountry, "DE");
+    assert.equal(eventData.endDate, gig.endDate);
+    assert.equal(eventData.offers.price, gig.presalePrice ?? gig.doorPrice);
+    assert.equal(eventData.offers.priceCurrency, "EUR");
+    assert.equal(eventData.offers.url, gig.ticket ?? `https://dystekt.band/gigs/${iso}/`);
+    assert.equal(eventData.organizer.name, gig.organizer);
+    assert.equal(eventData.location.name, venue.name);
+    assert.equal(eventData.location.address.addressCountry, venue.country);
     assert.equal(eventData.performer.name, "Dystekt");
     assert.ok(eventHtml.includes(`<meta name="twitter:title" content="${gig.title} — Dystekt"`));
     assert.ok(eventHtml.includes(`<meta name="twitter:image" content="https://dystekt.band${gig.image}"`));

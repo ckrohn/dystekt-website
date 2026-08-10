@@ -1,9 +1,7 @@
-import gigs from "../../data/gigs.json";
+import { getGigIso, getOfferPrice, getVenue, type Gig } from "./gigs";
 
 const siteUrl = "https://dystekt.band";
 export const bandId = `${siteUrl}/#band`;
-
-export type Gig = (typeof gigs.events)[number];
 
 export const bandStructuredData = {
   "@context": "https://schema.org",
@@ -45,28 +43,42 @@ export const websiteStructuredData = {
 };
 
 export function getEventStructuredData(gig: Gig) {
-  const eventUrl = `${siteUrl}/gigs/${gig.iso}/`;
+  const venue = getVenue(gig);
+  const eventUrl = `${siteUrl}/gigs/${getGigIso(gig)}/`;
 
   return {
     "@context": "https://schema.org",
     "@type": "Event",
     "@id": `${eventUrl}#event`,
     name: gig.title,
-    description: `${gig.title} at ${gig.venue} in ${gig.city}, featuring Dystekt. Doors at ${gig.doors}; show starts at ${gig.start}.`,
+    description: `${gig.title} at ${venue.name} in ${venue.city}, featuring Dystekt. Doors at ${gig.doors}; show starts at ${gig.start}.`,
     startDate: gig.startDate,
+    endDate: gig.endDate,
     eventStatus: "https://schema.org/EventScheduled",
     eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
     url: eventUrl,
     image: [`${siteUrl}${gig.image}`],
+    offers: {
+      "@type": "Offer",
+      url: gig.ticket ?? eventUrl,
+      price: getOfferPrice(gig),
+      priceCurrency: "EUR",
+      availability: "https://schema.org/InStock",
+      validFrom: gig.startDate,
+    },
+    organizer: {
+      "@type": "Organization",
+      name: gig.organizer,
+    },
     location: {
       "@type": "Place",
-      name: gig.venue,
+      name: venue.name,
       address: {
         "@type": "PostalAddress",
-        streetAddress: gig.streetAddress,
-        postalCode: gig.postalCode,
-        addressLocality: gig.addressLocality,
-        addressCountry: gig.addressCountry,
+        streetAddress: venue.street,
+        postalCode: venue.postalCode,
+        addressLocality: venue.city,
+        addressCountry: venue.country,
       },
     },
     performer: {

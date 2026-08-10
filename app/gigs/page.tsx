@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import gigs from "../../data/gigs.json";
 import { SiteFooter } from "../components/SiteFooter";
 import { SiteHeader } from "../components/SiteHeader";
+import { getGigIso } from "../lib/gigs";
 import { GigCard } from "./GigCard";
 
 export const metadata: Metadata = {
@@ -25,7 +26,7 @@ export default function GigsPage() {
 
         <section className="gig-list wrap" aria-label="Upcoming gigs">
           {gigs.events.map((gig, index) => (
-            <GigCard gig={gig} index={index} key={gig.iso} />
+            <GigCard gig={gig} index={index} key={getGigIso(gig)} />
           ))}
         </section>
       </main>

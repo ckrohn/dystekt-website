@@ -10,7 +10,11 @@ Official website for Dystekt, a melodic death metal band from Cologne, Germany.
 - `/downloads` — press kit, tech rider, and future downloadable resources
 - `/imprint` — contact, legal notice, and privacy information
 
-Gig entries live in `data/gigs.json`; music and audio-player entries live in
+Gig entries and reusable venues live in `data/gigs.json`. An event's `startDate`
+supplies its URL date and every displayed date format, while `venueId` references an
+entry in `venues`. Venue display addresses and structured data are derived from its
+`name`, `street`, `postalCode`, `city`, and `country`. Event structured data also uses
+`endDate`, `presalePrice`, `doorPrice`, and `organizer`. Music and audio-player entries live in
 `data/music.json`; downloadable resources live in `data/downloads.json`. Add
 the referenced files under `public/media/`.
 
