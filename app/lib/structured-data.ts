@@ -81,11 +81,11 @@ export function getEventStructuredData(gig: Gig) {
         addressCountry: venue.country,
       },
     },
-    performer: {
+    performer: gig.bands.map((band) => ({
       "@type": "MusicGroup",
-      "@id": bandId,
-      name: "Dystekt",
-      url: siteUrl,
-    },
+      ...(band.name === "Dystekt" ? { "@id": bandId, url: siteUrl } : {}),
+      name: band.name,
+      sameAs: band.instagram,
+    })),
   };
 }

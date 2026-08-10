@@ -17,7 +17,53 @@
       "ticket": "https://www.cologne-cataclysm.de",
       "venueId": "halle-am-rhein",
       "presalePrice": 15,
-      "doorPrice": 20
+      "doorPrice": 20,
+      "info": [
+        {
+          "heading": "Cologne Cataclysm 2026",
+          "paragraphs": [
+            "On 12 September 2026, Halle am Rhein in Cologne becomes a meeting place for fans of death metal, melodic death metal and thrash metal. Five bands will deliver an evening packed with blast beats, crushing riffs, massive grooves and uncompromising live energy."
+          ]
+        },
+        {
+          "heading": "Line-up",
+          "paragraphs": [
+            "ALL WILL KNOW — Modern melodic metal meets an old-school attitude and electronic influences. The band from Darmstadt combines orchestral soundscapes, memorable melodies and powerful vocals into a distinctive sound.",
+            "MARTYRION — The Cologne band blends melodic death metal with modern metal elements, balancing heaviness and atmosphere with infectious energy.",
+            "MAGEFA — Since 2014, Frankfurt's MAGEFA have stood for uncompromising death metal. Inspired by bands such as Cannibal Corpse, Carcass and Bolt Thrower, they combine aggression, precision and unrestrained live power. Their current album, LEGION, continues that trajectory.",
+            "CONQUEROR — Formed in the heart of the Cologne Bay, CONQUEROR play uncompromising modern thrash metal. Racing riffs, driving drums and raw energy set the stage for a merciless live show.",
+            "DYSTEKT — Founded in 2025, the melodic death metal band combines hard-hitting riffs, melodic guitar work and brutal vocals in a powerful modern sound."
+          ]
+        },
+        {
+          "heading": "Five bands. No respite.",
+          "paragraphs": [
+            "Expect five formidable live acts, a varied bill and an evening that never lets up. Death metal. Melodic death metal. Thrash metal. Cologne will shake."
+          ]
+        }
+      ],
+      "bands": [
+        {
+          "name": "ALL WILL KNOW",
+          "instagram": "https://www.instagram.com/allwillknow_official"
+        },
+        {
+          "name": "Martyrion",
+          "instagram": "https://www.instagram.com/martyrion_band"
+        },
+        {
+          "name": "MAGEFA",
+          "instagram": "https://www.instagram.com/magefametal"
+        },
+        {
+          "name": "CONQUEROR",
+          "instagram": "https://www.instagram.com/conqueror_thrash"
+        },
+        {
+          "name": "Dystekt",
+          "instagram": "https://www.instagram.com/dystektofficial"
+        }
+      ]
     },
     {
       "startDate": "2026-10-23T18:00:00+02:00",
@@ -33,7 +79,22 @@
       "ticket": null,
       "venueId": "halle-am-rhein",
       "presalePrice": null,
-      "doorPrice": 10
+      "doorPrice": 10,
+      "info": null,
+      "bands": [
+        {
+          "name": "Dystekt",
+          "instagram": "https://www.instagram.com/dystektofficial"
+        },
+        {
+          "name": "SaghulHaza",
+          "instagram": "https://www.instagram.com/saghulhaza"
+        },
+        {
+          "name": "Snuffed",
+          "instagram": "https://www.instagram.com/snuffed.deathdoom"
+        }
+      ]
     }
   ],
   "venues": [

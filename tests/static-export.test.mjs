@@ -42,7 +42,11 @@ test("exports every public page as static HTML", async () => {
     assert.ok(gigsHtml.includes(gig.title));
     assert.ok(gigsHtml.includes(gig.flyer));
     assert.ok(gigsHtml.includes(gig.image));
-    assert.ok(gigsHtml.includes(`/gigs/${iso}`));
+    if (gig.info) {
+      assert.ok(gigsHtml.includes(`/gigs/${iso}`));
+    } else {
+      assert.ok(!gigsHtml.includes(`/gigs/${iso}`));
+    }
 
     const eventHtml = await html(`gigs/${iso}`);
     const eventData = jsonLd(eventHtml).find((entry) => entry["@type"] === "Event");
@@ -55,9 +59,21 @@ test("exports every public page as static HTML", async () => {
     assert.equal(eventData.organizer.name, gig.organizer);
     assert.equal(eventData.location.name, venue.name);
     assert.equal(eventData.location.address.addressCountry, venue.country);
-    assert.equal(eventData.performer.name, "Dystekt");
+    assert.deepEqual(eventData.performer.map((band) => band.name), gig.bands.map((band) => band.name));
+    for (const band of gig.bands) {
+      assert.ok(gigsHtml.includes(band.name));
+      assert.ok(gigsHtml.includes(band.instagram));
+    }
     assert.ok(eventHtml.includes(`<meta name="twitter:title" content="${gig.title} — Dystekt"`));
     assert.ok(eventHtml.includes(`<meta name="twitter:image" content="https://dystekt.band${gig.image}"`));
+    assert.ok(eventHtml.includes(`class="flyer-lightbox"`));
+    assert.ok(eventHtml.includes("View flyer"));
+    if (gig.info) {
+      assert.ok(eventHtml.includes("About the show"));
+      for (const section of gig.info) {
+        assert.ok(eventHtml.includes(section.heading));
+      }
+    }
   }
   for (const track of musicConfig.tracks) {
     assert.ok(musicHtml.includes(track.name));

@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useRef } from "react";
 import { formatGigPrice, formatVenueAddress, getGigDateParts, getGigIso, getVenue, type Gig } from "../lib/gigs";
 
 export function GigCard({
@@ -10,20 +13,29 @@ export function GigCard({
   index: number;
   showDetailLink?: boolean;
 }) {
+  const lightbox = useRef<HTMLDialogElement>(null);
   const date = getGigDateParts(gig);
   const venue = getVenue(gig);
+
+  function openFlyer() {
+    if (window.matchMedia("(max-width: 760px)").matches) return;
+    lightbox.current?.showModal();
+  }
+
+  function closeFlyer() {
+    lightbox.current?.close();
+  }
 
   return (
     <article className="gig-card">
       <div className="gig-number" aria-hidden="true">
         {String(index + 1).padStart(2, "0")}
       </div>
-      <a
+      <button
+        type="button"
         className="flyer-frame"
-        href={gig.flyer}
-        target="_blank"
-        rel="noreferrer"
-        aria-label={`Open full flyer for ${gig.title}`}
+        aria-label={`Enlarge flyer for ${gig.title}`}
+        onClick={openFlyer}
       >
         <img
           src={gig.image}
@@ -31,7 +43,7 @@ export function GigCard({
           height={gig.imageHeight}
           alt={`${gig.title} event flyer`}
         />
-      </a>
+      </button>
       <div className="gig-info">
         <time dateTime={getGigIso(gig)} className="gig-date">
           <strong>{date.day}</strong>
@@ -43,6 +55,16 @@ export function GigCard({
         </div>
         <dl className="gig-details">
           <div><dt>Address</dt><dd>{formatVenueAddress(venue)}</dd></div>
+          <div>
+            <dt>Line-up</dt>
+            <dd className="gig-bands">
+              {gig.bands.map((band) => (
+                <a key={band.name} href={band.instagram} target="_blank" rel="noreferrer">
+                  {band.name}<span className="visually-hidden"> on Instagram</span>
+                </a>
+              ))}
+            </dd>
+          </div>
           <div><dt>Doors / Start</dt><dd>{gig.doors} / {gig.start}</dd></div>
           <div><dt>Entry</dt><dd>{formatGigPrice(gig)}</dd></div>
         </dl>
@@ -54,16 +76,34 @@ export function GigCard({
           ) : (
             <span className="door-note">Door tickets · no presale listed</span>
           )}
-          {showDetailLink ? (
+          {showDetailLink && gig.info ? (
             <Link className="text-link dark-link" href={`/gigs/${getGigIso(gig)}`}>
               Event details <span aria-hidden="true">→</span>
             </Link>
           ) : null}
-          <a className="text-link dark-link" href={gig.flyer} target="_blank" rel="noreferrer">
+          <button type="button" className="text-link dark-link flyer-trigger-link" onClick={openFlyer}>
             View flyer <span aria-hidden="true">↗</span>
-          </a>
+          </button>
         </div>
       </div>
+      <dialog
+        ref={lightbox}
+        className="flyer-lightbox"
+        aria-label={`${gig.title} flyer`}
+      >
+        <button
+          type="button"
+          className="flyer-lightbox-backdrop"
+          aria-label="Close flyer"
+          onClick={closeFlyer}
+        />
+        <div className="flyer-lightbox-content">
+          <button type="button" className="flyer-lightbox-close" aria-label="Close flyer" onClick={closeFlyer}>
+            <span aria-hidden="true">×</span>
+          </button>
+          <img src={gig.flyer} alt={`${gig.title} event flyer, enlarged`} />
+        </div>
+      </dialog>
     </article>
   );
 }

@@ -77,9 +77,28 @@ export default async function EventPage({ params }: EventPageProps) {
           <p className="page-lede">Dystekt live at {venue.name} in {venue.city}.</p>
         </header>
 
-        <section className="gig-list wrap" aria-label={`${gig.title} details`}>
+        <section className="gig-list event-gig-list wrap" aria-label={`${gig.title} details`}>
           <GigCard gig={gig} index={0} showDetailLink={false} />
         </section>
+
+        {gig.info ? (
+          <section className="event-info wrap" aria-labelledby="event-info-title">
+            <p className="eyebrow red">Event info</p>
+            <div className="event-info-grid">
+              <h2 id="event-info-title">About the show</h2>
+              <div className="event-info-sections">
+                {gig.info.map((section) => (
+                  <section key={section.heading}>
+                    <h3>{section.heading}</h3>
+                    {section.paragraphs.map((paragraph) => (
+                      <p key={paragraph}>{paragraph}</p>
+                    ))}
+                  </section>
+                ))}
+              </div>
+            </div>
+          </section>
+        ) : null}
       </main>
       <SiteFooter />
     </div>

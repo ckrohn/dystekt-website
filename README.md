@@ -14,7 +14,10 @@ Gig entries and reusable venues live in `data/gigs.json`. An event's `startDate`
 supplies its URL date and every displayed date format, while `venueId` references an
 entry in `venues`. Venue display addresses and structured data are derived from its
 `name`, `street`, `postalCode`, `city`, and `country`. Event structured data also uses
-`endDate`, `presalePrice`, `doorPrice`, and `organizer`. Music and audio-player entries live in
+`endDate`, `presalePrice`, `doorPrice`, and `organizer`. Each event also has a `bands` array containing the participating bands and their
+Instagram URLs. Set `info` to an array of
+heading/paragraph sections to show formatted copy on an event detail page, or to `null`
+to omit it. Music and audio-player entries live in
 `data/music.json`; downloadable resources live in `data/downloads.json`. Add
 the referenced files under `public/media/`.
 
