@@ -14,11 +14,12 @@ function jsonLd(htmlContent) {
 }
 
 test("exports every public page as static HTML", async () => {
-  const [home, gigsHtml, musicHtml, downloadsHtml, imprint, gigsConfig, musicConfig, downloadsConfig] = await Promise.all([
+  const [home, gigsHtml, musicHtml, downloadsHtml, contactHtml, imprint, gigsConfig, musicConfig, downloadsConfig] = await Promise.all([
     html(),
     html("gigs"),
     html("music"),
     html("downloads"),
+    html("contact"),
     html("imprint"),
     readFile(new URL("../data/gigs.json", import.meta.url), "utf8").then(JSON.parse),
     readFile(new URL("../data/music.json", import.meta.url), "utf8").then(JSON.parse),
@@ -32,9 +33,30 @@ test("exports every public page as static HTML", async () => {
   assert.match(home, /dystekt-social-preview\.jpg/);
   const bandData = jsonLd(home).find((entry) => entry["@type"] === "MusicGroup" && entry.name === "Dystekt");
   assert.equal(bandData.email, "mailto:contact@dystekt.band");
+  assert.deepEqual(bandData.contactPoint, {
+    "@type": "ContactPoint",
+    email: "contact@dystekt.band",
+    contactType: "booking and press enquiries",
+    areaServed: "Worldwide",
+    availableLanguage: ["English", "German"],
+  });
   assert.ok(jsonLd(home).some((entry) => entry["@type"] === "WebSite" && entry.name === "Dystekt"));
   for (const platform of ["Instagram", "Bandcamp", "Linktree", "YouTube", "X / Twitter"]) {
     assert.ok(home.includes(platform));
+  }
+  for (const [page, label] of [
+    [gigsHtml, "Gigs"],
+    [musicHtml, "Music"],
+    [downloadsHtml, "Downloads"],
+    [contactHtml, "Contact"],
+    [imprint, "Imprint"],
+  ]) {
+    const breadcrumb = jsonLd(page).find((entry) => entry["@type"] === "BreadcrumbList");
+    assert.deepEqual(
+      breadcrumb.itemListElement.map((item) => item.name),
+      ["Dystekt", label],
+    );
+    assert.ok(page.includes('aria-label="Breadcrumb"'));
   }
   for (const gig of gigsConfig.events) {
     const iso = gig.startDate.slice(0, 10);
@@ -95,6 +117,16 @@ test("exports every public page as static HTML", async () => {
     assert.ok(downloadsHtml.includes(download.name));
     assert.ok(downloadsHtml.includes(download.file));
   }
+  assert.match(contactHtml, /Contact Dystekt for concert bookings/);
+  assert.match(contactHtml, /mailto:contact@dystekt\.band\?subject=Booking%20enquiry/);
+  assert.match(contactHtml, /mailto:contact@dystekt\.band\?subject=Press%20enquiry/);
+  assert.match(contactHtml, /Dystekt_Presskit\.zip/);
+  assert.match(contactHtml, /Dystekt_Tech_Rider\.pdf/);
+  assert.match(contactHtml, /rel="canonical" href="https:\/\/dystekt\.band\/contact\//);
+  assert.match(contactHtml, /property="og:title" content="Contact &amp; Booking - Dystekt"/);
+  assert.match(contactHtml, /property="og:url" content="https:\/\/dystekt\.band\/contact\//);
+  assert.match(contactHtml, /name="twitter:title" content="Contact &amp; Booking - Dystekt"/);
+  assert.match(contactHtml, /melodic death metal band from Cologne, Germany/);
   assert.match(imprint, /Christopher Krohn/);
   assert.match(imprint, /contact@dystekt\.band/);
   assert.match(imprint, /Herler Str\. 61/);
@@ -137,6 +169,7 @@ test("copies deployable media and GitHub Pages files", async () => {
 
   const sitemap = await readFile(new URL("sitemap.xml", output), "utf8");
   assert.match(sitemap, /https:\/\/dystekt\.band\/gigs\/2026-09-12\//);
+  assert.match(sitemap, /https:\/\/dystekt\.band\/contact\//);
   assert.doesNotMatch(sitemap, /\/imprint\//);
 
   const robots = await readFile(new URL("robots.txt", output), "utf8");

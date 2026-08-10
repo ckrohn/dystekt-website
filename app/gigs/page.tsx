@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import gigs from "../../data/gigs.json";
+import { Breadcrumbs } from "../components/Breadcrumbs";
 import { SiteFooter } from "../components/SiteFooter";
 import { SiteHeader } from "../components/SiteHeader";
 import { getGigIso } from "../lib/gigs";
@@ -18,6 +19,7 @@ export default function GigsPage() {
     <div className="site-shell inner-page">
       <SiteHeader />
       <main>
+        <Breadcrumbs items={[{ name: "Dystekt", href: "/" }, { name: "Gigs", href: "/gigs/" }]} />
         <header className="page-header wrap">
           <p className="eyebrow red">{gigs.eyebrow}</p>
           <h1>{gigs.title}</h1>

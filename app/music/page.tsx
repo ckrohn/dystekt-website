@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import music from "../../data/music.json";
+import { Breadcrumbs } from "../components/Breadcrumbs";
 import { SiteFooter } from "../components/SiteFooter";
 import { SiteHeader } from "../components/SiteHeader";
 
@@ -16,6 +17,7 @@ export default function MusicPage() {
     <div className="site-shell music-page">
       <SiteHeader />
       <main>
+        <Breadcrumbs items={[{ name: "Dystekt", href: "/" }, { name: "Music", href: "/music/" }]} />
         <section className="music-hero">
           <div className="music-photo" aria-hidden="true" />
           <div className="wrap music-layout">

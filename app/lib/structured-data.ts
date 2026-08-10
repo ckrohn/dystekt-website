@@ -10,6 +10,13 @@ export const bandStructuredData = {
   name: "Dystekt",
   url: siteUrl,
   email: "mailto:contact@dystekt.band",
+  contactPoint: {
+    "@type": "ContactPoint",
+    email: "contact@dystekt.band",
+    contactType: "booking and press enquiries",
+    areaServed: "Worldwide",
+    availableLanguage: ["English", "German"],
+  },
   description:
     "Dystekt is a five-piece melodic death metal band from Cologne, Germany.",
   genre: ["Melodic death metal", "Metalcore", "Thrash metal"],
@@ -42,20 +49,6 @@ export const websiteStructuredData = {
     "@id": bandId,
   },
 };
-
-export function getEventBreadcrumbStructuredData(gig: Gig) {
-  const eventUrl = `${siteUrl}/gigs/${getGigIso(gig)}/`;
-
-  return {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Dystekt", item: `${siteUrl}/` },
-      { "@type": "ListItem", position: 2, name: "Gigs", item: `${siteUrl}/gigs/` },
-      { "@type": "ListItem", position: 3, name: gig.title, item: eventUrl },
-    ],
-  };
-}
 
 export function getEventStructuredData(gig: Gig) {
   const venue = getVenue(gig);

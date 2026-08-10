@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import gigs from "../../../data/gigs.json";
+import { Breadcrumbs } from "../../components/Breadcrumbs";
 import { JsonLd } from "../../components/JsonLd";
 import { SiteFooter } from "../../components/SiteFooter";
 import { SiteHeader } from "../../components/SiteHeader";
 import { getGigDateParts, getGigIso, getVenue } from "../../lib/gigs";
-import { getEventBreadcrumbStructuredData, getEventStructuredData } from "../../lib/structured-data";
+import { getEventStructuredData } from "../../lib/structured-data";
 import { GigCard } from "../GigCard";
 
 type EventPageProps = {
@@ -72,14 +72,13 @@ export default async function EventPage({ params }: EventPageProps) {
       <SiteHeader />
       <main>
         <JsonLd data={getEventStructuredData(gig)} />
-        <JsonLd data={getEventBreadcrumbStructuredData(gig)} />
-        <nav className="breadcrumb wrap" aria-label="Breadcrumb">
-          <ol>
-            <li><Link href="/">Dystekt</Link></li>
-            <li><Link href="/gigs">Gigs</Link></li>
-            <li aria-current="page">{gig.title}</li>
-          </ol>
-        </nav>
+        <Breadcrumbs
+          items={[
+            { name: "Dystekt", href: "/" },
+            { name: "Gigs", href: "/gigs/" },
+            { name: gig.title, href: `/gigs/${iso}/` },
+          ]}
+        />
         <header className="page-header event-header wrap">
           <p className="eyebrow red">Live / {date.label}</p>
           <h1>{gig.title}</h1>

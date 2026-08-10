@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import downloads from "../../data/downloads.json";
+import { Breadcrumbs } from "../components/Breadcrumbs";
 import { SiteFooter } from "../components/SiteFooter";
 import { SiteHeader } from "../components/SiteHeader";
 
@@ -16,6 +17,7 @@ export default function DownloadsPage() {
     <div className="site-shell inner-page downloads-page">
       <SiteHeader />
       <main>
+        <Breadcrumbs items={[{ name: "Dystekt", href: "/" }, { name: "Downloads", href: "/downloads/" }]} />
         <header className="page-header downloads-header wrap">
           <p className="eyebrow red">{downloads.eyebrow}</p>
           <h1>{downloads.title}</h1>

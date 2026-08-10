@@ -12,6 +12,7 @@ export function SiteHeader() {
         <Link href="/gigs">Gigs</Link>
         <Link href="/music">Music</Link>
         <Link href="/downloads">Downloads</Link>
+        <Link href="/contact">Contact</Link>
       </nav>
       <a
         className="header-social"

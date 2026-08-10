@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Breadcrumbs } from "../components/Breadcrumbs";
 import { SiteFooter } from "../components/SiteFooter";
 import { SiteHeader } from "../components/SiteHeader";
 
@@ -19,6 +20,7 @@ export default function ImprintPage() {
     <div className="site-shell inner-page legal-page">
       <SiteHeader />
       <main>
+        <Breadcrumbs items={[{ name: "Dystekt", href: "/" }, { name: "Imprint", href: "/imprint/" }]} />
         <header className="legal-header wrap">
           <p className="eyebrow red">Legal / Contact</p>
           <h1>Imprint</h1>

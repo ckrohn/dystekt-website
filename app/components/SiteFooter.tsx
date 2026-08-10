@@ -9,6 +9,7 @@ export function SiteFooter() {
         </Link>
         <p className="footer-tagline">Melodic death metal · Cologne, Germany</p>
         <div className="footer-meta">
+          <Link href="/contact">Contact</Link>
           <Link href="/imprint">Imprint</Link>
           <span>© {new Date().getFullYear()} Dystekt</span>
         </div>

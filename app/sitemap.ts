@@ -6,7 +6,7 @@ const siteUrl = "https://dystekt.band";
 export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const pages = ["", "gigs/", "music/", "downloads/"];
+  const pages = ["", "gigs/", "music/", "downloads/", "contact/"];
 
   return [
     ...pages.map((path) => ({ url: `${siteUrl}/${path}` })),
