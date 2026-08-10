@@ -9,6 +9,7 @@ export const bandStructuredData = {
   "@id": bandId,
   name: "Dystekt",
   url: siteUrl,
+  email: "mailto:contact@dystekt.band",
   description:
     "Dystekt is a five-piece melodic death metal band from Cologne, Germany.",
   genre: ["Melodic death metal", "Metalcore", "Thrash metal"],
@@ -42,6 +43,20 @@ export const websiteStructuredData = {
   },
 };
 
+export function getEventBreadcrumbStructuredData(gig: Gig) {
+  const eventUrl = `${siteUrl}/gigs/${getGigIso(gig)}/`;
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Dystekt", item: `${siteUrl}/` },
+      { "@type": "ListItem", position: 2, name: "Gigs", item: `${siteUrl}/gigs/` },
+      { "@type": "ListItem", position: 3, name: gig.title, item: eventUrl },
+    ],
+  };
+}
+
 export function getEventStructuredData(gig: Gig) {
   const venue = getVenue(gig);
   const eventUrl = `${siteUrl}/gigs/${getGigIso(gig)}/`;
@@ -58,13 +73,13 @@ export function getEventStructuredData(gig: Gig) {
     eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
     url: eventUrl,
     image: [`${siteUrl}${gig.image}`],
+    ...(gig.website ? { sameAs: gig.website } : {}),
     offers: {
       "@type": "Offer",
       url: gig.ticket ?? eventUrl,
       price: getOfferPrice(gig),
       priceCurrency: "EUR",
       availability: "https://schema.org/InStock",
-      validFrom: gig.startDate,
     },
     organizer: {
       "@type": "Organization",
@@ -83,7 +98,9 @@ export function getEventStructuredData(gig: Gig) {
     },
     performer: gig.bands.map((band) => ({
       "@type": "MusicGroup",
-      ...(band.name === "Dystekt" ? { "@id": bandId, url: siteUrl } : {}),
+      ...(band.name.toLowerCase() === "dystekt"
+        ? { "@id": bandId, url: siteUrl, email: "mailto:contact@dystekt.band" }
+        : {}),
       name: band.name,
       sameAs: band.instagram,
     })),

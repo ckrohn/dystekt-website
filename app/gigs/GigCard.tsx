@@ -53,7 +53,11 @@ export function GigCard({
           <span>{date.month} / {date.year}</span>
         </time>
         <div>
-          <h2>{gig.title}</h2>
+          <h2>
+            {showDetailLink ? (
+              <Link href={`/gigs/${getGigIso(gig)}`}>{gig.title}</Link>
+            ) : gig.title}
+          </h2>
           <p className="gig-venue">{venue.name}</p>
         </div>
         <dl className="gig-details">
@@ -74,11 +78,16 @@ export function GigCard({
         <div className="gig-actions">
           {gig.ticket ? (
             <a className="button button-solid" href={gig.ticket} target="_blank" rel="noreferrer">
-              Tickets & info
+              Presale tickets
             </a>
           ) : (
             <span className="door-note">Door tickets · no presale listed</span>
           )}
+          {gig.website ? (
+            <a className="text-link dark-link" href={gig.website} target="_blank" rel="noreferrer">
+              Event website <span aria-hidden="true">↗</span>
+            </a>
+          ) : null}
           {showDetailLink && gig.info ? (
             <Link className="text-link dark-link" href={`/gigs/${getGigIso(gig)}`}>
               Event details <span aria-hidden="true">→</span>

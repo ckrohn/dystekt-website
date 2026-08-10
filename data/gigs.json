@@ -14,7 +14,7 @@
       "image": "/media/cologne-cataclysm-2026.webp",
       "imageWidth": 1000,
       "imageHeight": 1419,
-      "ticket": "https://www.cologne-cataclysm.de",
+      "ticket": "https://www.eventim-light.com/de/a/67571d50d9c80040901a4393/e/6a6a456facd1414618bcd846",
       "venueId": "halle-am-rhein",
       "presalePrice": 15,
       "doorPrice": 20,
@@ -63,7 +63,8 @@
           "name": "DYSTEKT",
           "instagram": "https://www.instagram.com/dystektofficial"
         }
-      ]
+      ],
+      "website": "https://www.cologne-cataclysm.de"
     },
     {
       "startDate": "2026-10-23T18:00:00+02:00",
@@ -94,7 +95,8 @@
           "name": "Snuffed",
           "instagram": "https://www.instagram.com/snuffed.deathdoom"
         }
-      ]
+      ],
+      "website": null
     }
   ],
   "venues": [

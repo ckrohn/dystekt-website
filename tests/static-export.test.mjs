@@ -30,7 +30,8 @@ test("exports every public page as static HTML", async () => {
   assert.match(home, /social-icon/);
   assert.match(home, /rel="canonical" href="https:\/\/dystekt\.band\/"/);
   assert.match(home, /dystekt-social-preview\.jpg/);
-  assert.ok(jsonLd(home).some((entry) => entry["@type"] === "MusicGroup" && entry.name === "Dystekt"));
+  const bandData = jsonLd(home).find((entry) => entry["@type"] === "MusicGroup" && entry.name === "Dystekt");
+  assert.equal(bandData.email, "mailto:contact@dystekt.band");
   assert.ok(jsonLd(home).some((entry) => entry["@type"] === "WebSite" && entry.name === "Dystekt"));
   for (const platform of ["Instagram", "Bandcamp", "Linktree", "YouTube", "X / Twitter"]) {
     assert.ok(home.includes(platform));
@@ -42,24 +43,33 @@ test("exports every public page as static HTML", async () => {
     assert.ok(gigsHtml.includes(gig.title));
     assert.ok(gigsHtml.includes(gig.flyer));
     assert.ok(gigsHtml.includes(gig.image));
-    if (gig.info) {
-      assert.ok(gigsHtml.includes(`/gigs/${iso}`));
-    } else {
-      assert.ok(!gigsHtml.includes(`/gigs/${iso}`));
-    }
+    assert.ok(gigsHtml.includes(`/gigs/${iso}`));
 
     const eventHtml = await html(`gigs/${iso}`);
     const eventData = jsonLd(eventHtml).find((entry) => entry["@type"] === "Event");
+    const breadcrumbData = jsonLd(eventHtml).find((entry) => entry["@type"] === "BreadcrumbList");
+    assert.deepEqual(
+      breadcrumbData.itemListElement.map((item) => item.name),
+      ["Dystekt", "Gigs", gig.title],
+    );
+    assert.ok(eventHtml.includes('aria-label="Breadcrumb"'));
     assert.equal(eventData.name, gig.title);
     assert.equal(eventData.startDate, gig.startDate);
     assert.equal(eventData.endDate, gig.endDate);
     assert.equal(eventData.offers.price, gig.presalePrice ?? gig.doorPrice);
     assert.equal(eventData.offers.priceCurrency, "EUR");
+    assert.ok(!("validFrom" in eventData.offers));
     assert.equal(eventData.offers.url, gig.ticket ?? `https://dystekt.band/gigs/${iso}/`);
+    assert.equal(eventData.sameAs, gig.website ?? undefined);
+    if (gig.website) assert.ok(gigsHtml.includes(gig.website));
     assert.equal(eventData.organizer.name, gig.organizer);
     assert.equal(eventData.location.name, venue.name);
     assert.equal(eventData.location.address.addressCountry, venue.country);
     assert.deepEqual(eventData.performer.map((band) => band.name), gig.bands.map((band) => band.name));
+    assert.equal(
+      eventData.performer.find((band) => band.name.toLowerCase() === "dystekt").email,
+      "mailto:contact@dystekt.band",
+    );
     for (const band of gig.bands) {
       assert.ok(gigsHtml.includes(band.name));
       assert.ok(gigsHtml.includes(band.instagram));

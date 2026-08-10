@@ -1542,3 +1542,52 @@ img {
     background-image: url("/media/dystekt-band.webp");
   }
 }
+
+.gig-info h2 a {
+  transition: color 160ms ease;
+}
+
+.gig-info h2 a:hover,
+.gig-info h2 a:focus-visible {
+  color: var(--red);
+}
+
+.breadcrumb {
+  padding-top: 42px;
+  color: #6b6862;
+  font-family: var(--display);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.breadcrumb ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.breadcrumb li:not(:last-child)::after {
+  content: "/";
+  margin-left: 8px;
+  color: var(--red);
+}
+
+.breadcrumb a {
+  border-bottom: 1px solid transparent;
+  transition: color 160ms ease, border-color 160ms ease;
+}
+
+.breadcrumb a:hover,
+.breadcrumb a:focus-visible {
+  color: var(--red);
+  border-color: var(--red);
+}
+
+.breadcrumb + .page-header {
+  padding-top: 64px;
+}
