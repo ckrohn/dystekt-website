@@ -1317,6 +1317,46 @@ img {
   }
 }
 
+.not-found-page {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+
+.not-found-main {
+  flex: 1;
+  padding-top: clamp(80px, 11vw, 150px);
+  padding-bottom: clamp(90px, 12vw, 170px);
+}
+
+.not-found-main h1 {
+  max-width: 980px;
+  margin: 0;
+  font-family: var(--display);
+  font-size: clamp(4.5rem, 13vw, 11rem);
+  font-weight: 900;
+  letter-spacing: -0.055em;
+  line-height: 0.84;
+  text-transform: uppercase;
+}
+
+.not-found-copy {
+  max-width: 560px;
+  margin: 44px 0 14px;
+  font-size: clamp(1.05rem, 2vw, 1.3rem);
+  line-height: 1.6;
+}
+
+.not-found-countdown {
+  margin: 0 0 36px;
+  color: #6b6862;
+}
+
+.not-found-countdown strong {
+  color: var(--red);
+  font-variant-numeric: tabular-nums;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition: none !important; }

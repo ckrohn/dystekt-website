@@ -182,6 +182,16 @@ test("copies deployable media and GitHub Pages files", async () => {
   assert.match(robots, /Sitemap: https:\/\/dystekt\.band\/sitemap\.xml/);
 });
 
+test("exports a helpful 404 page that returns visitors home after five seconds", async () => {
+  const notFound = await readFile(new URL("404.html", output), "utf8");
+
+  assert.match(notFound, /Page not found\./);
+  assert.match(notFound, /id="redirect-countdown">5</);
+  assert.match(notFound, /window\.location\.replace\("\/"\)/);
+  assert.match(notFound, /5000/);
+  assert.match(notFound, /href="\/">Go home now</);
+});
+
 test("links directly to canonical pages without relying on redirects", async () => {
   const pages = [
     "",
