@@ -39,12 +39,12 @@ export async function generateMetadata({ params }: EventPageProps): Promise<Meta
     title: gig.title,
     description,
     alternates: {
-      canonical: `/gigs/${getGigIso(gig)}/`,
+      canonical: `/gigs/${getGigIso(gig)}`,
     },
     openGraph: {
       title: `${gig.title} — Dystekt`,
       description,
-      url: `/gigs/${getGigIso(gig)}/`,
+      url: `/gigs/${getGigIso(gig)}`,
       images: [socialImage],
     },
     twitter: {
@@ -75,8 +75,8 @@ export default async function EventPage({ params }: EventPageProps) {
         <Breadcrumbs
           items={[
             { name: "Dystekt", href: "/" },
-            { name: "Gigs", href: "/gigs/" },
-            { name: gig.title, href: `/gigs/${iso}/` },
+            { name: "Gigs", href: "/gigs" },
+            { name: gig.title, href: `/gigs/${iso}` },
           ]}
         />
         <header className="page-header event-header wrap">

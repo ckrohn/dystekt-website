@@ -5,12 +5,17 @@ import test from "node:test";
 const output = new URL("../out/", import.meta.url);
 
 async function html(route = "") {
-  return readFile(new URL(`${route ? `${route}/` : ""}index.html`, output), "utf8");
+  return readFile(new URL(route ? `${route}.html` : "index.html", output), "utf8");
 }
 
 function jsonLd(htmlContent) {
   return [...htmlContent.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)]
     .map((match) => JSON.parse(match[1]));
+}
+
+function internalPageLinks(htmlContent) {
+  return [...htmlContent.matchAll(/href="(\/(?!_next\/|media\/)[^"?#]*)"/g)]
+    .map((match) => match[1]);
 }
 
 test("exports every public page as static HTML", async () => {
@@ -29,7 +34,7 @@ test("exports every public page as static HTML", async () => {
   assert.match(home, /five-piece melodic death metal band founded in July/);
   assert.match(home, /Stay up to date\./);
   assert.match(home, /social-icon/);
-  assert.match(home, /rel="canonical" href="https:\/\/dystekt\.band\/"/);
+  assert.match(home, /rel="canonical" href="https:\/\/dystekt\.band"/);
   assert.match(home, /dystekt-social-preview\.jpg/);
   const bandData = jsonLd(home).find((entry) => entry["@type"] === "MusicGroup" && entry.name === "Dystekt");
   assert.equal(bandData.email, "mailto:contact@dystekt.band");
@@ -81,7 +86,7 @@ test("exports every public page as static HTML", async () => {
     assert.equal(eventData.offers.price, gig.presalePrice ?? gig.doorPrice);
     assert.equal(eventData.offers.priceCurrency, "EUR");
     assert.ok(!("validFrom" in eventData.offers));
-    assert.equal(eventData.offers.url, gig.ticket ?? `https://dystekt.band/gigs/${iso}/`);
+    assert.equal(eventData.offers.url, gig.ticket ?? `https://dystekt.band/gigs/${iso}`);
     assert.equal(eventData.sameAs, gig.website ?? undefined);
     if (gig.website) assert.ok(gigsHtml.includes(gig.website));
     assert.equal(eventData.organizer.name, gig.organizer);
@@ -122,9 +127,9 @@ test("exports every public page as static HTML", async () => {
   assert.match(contactHtml, /mailto:contact@dystekt\.band\?subject=Press%20enquiry/);
   assert.match(contactHtml, /Dystekt_Presskit\.zip/);
   assert.match(contactHtml, /Dystekt_Tech_Rider\.pdf/);
-  assert.match(contactHtml, /rel="canonical" href="https:\/\/dystekt\.band\/contact\//);
+  assert.match(contactHtml, /rel="canonical" href="https:\/\/dystekt\.band\/contact"/);
   assert.match(contactHtml, /property="og:title" content="Contact &amp; Booking - Dystekt"/);
-  assert.match(contactHtml, /property="og:url" content="https:\/\/dystekt\.band\/contact\//);
+  assert.match(contactHtml, /property="og:url" content="https:\/\/dystekt\.band\/contact"/);
   assert.match(contactHtml, /name="twitter:title" content="Contact &amp; Booking - Dystekt"/);
   assert.match(contactHtml, /melodic death metal band from Cologne, Germany/);
   assert.match(imprint, /Christopher Krohn/);
@@ -168,13 +173,34 @@ test("copies deployable media and GitHub Pages files", async () => {
   );
 
   const sitemap = await readFile(new URL("sitemap.xml", output), "utf8");
-  assert.match(sitemap, /https:\/\/dystekt\.band\/gigs\/2026-09-12\//);
-  assert.match(sitemap, /https:\/\/dystekt\.band\/contact\//);
+  assert.match(sitemap, /https:\/\/dystekt\.band\/gigs\/2026-09-12</);
+  assert.match(sitemap, /https:\/\/dystekt\.band\/contact</);
   assert.doesNotMatch(sitemap, /\/imprint\//);
 
   const robots = await readFile(new URL("robots.txt", output), "utf8");
   assert.match(robots, /Allow: \//);
   assert.match(robots, /Sitemap: https:\/\/dystekt\.band\/sitemap\.xml/);
+});
+
+test("links directly to canonical pages without relying on redirects", async () => {
+  const pages = [
+    "",
+    "gigs",
+    "music",
+    "downloads",
+    "contact",
+    "imprint",
+    ...JSON.parse(await readFile(new URL("../data/gigs.json", import.meta.url), "utf8"))
+      .events.map((gig) => `gigs/${gig.startDate.slice(0, 10)}`),
+  ];
+
+  for (const page of pages) {
+    const links = internalPageLinks(await html(page));
+    assert.ok(
+      links.every((href) => href === "/" || !href.endsWith("/")),
+      `${page || "home"} contains a non-canonical internal page link: ${links.join(", ")}`,
+    );
+  }
 });
 
 test("uses only the dependencies needed for this static site", async () => {

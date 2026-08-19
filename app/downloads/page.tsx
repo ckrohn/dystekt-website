@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: "Downloads",
   description: "Download the Dystekt press kit and technical rider.",
   alternates: {
-    canonical: "/downloads/",
+    canonical: "/downloads",
   },
 };
 
@@ -17,7 +17,7 @@ export default function DownloadsPage() {
     <div className="site-shell inner-page downloads-page">
       <SiteHeader />
       <main>
-        <Breadcrumbs items={[{ name: "Dystekt", href: "/" }, { name: "Downloads", href: "/downloads/" }]} showNavigation={false} />
+        <Breadcrumbs items={[{ name: "Dystekt", href: "/" }, { name: "Downloads", href: "/downloads" }]} showNavigation={false} />
         <header className="page-header downloads-header wrap">
           <p className="eyebrow red">{downloads.eyebrow}</p>
           <h1>{downloads.title}</h1>

@@ -52,7 +52,7 @@ export const websiteStructuredData = {
 
 export function getEventStructuredData(gig: Gig) {
   const venue = getVenue(gig);
-  const eventUrl = `${siteUrl}/gigs/${getGigIso(gig)}/`;
+  const eventUrl = `${siteUrl}/gigs/${getGigIso(gig)}`;
 
   return {
     "@context": "https://schema.org",

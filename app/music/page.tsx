@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: "Music",
   description: "Listen to the latest Dystekt sneak peek.",
   alternates: {
-    canonical: "/music/",
+    canonical: "/music",
   },
 };
 
@@ -17,7 +17,7 @@ export default function MusicPage() {
     <div className="site-shell music-page">
       <SiteHeader />
       <main>
-        <Breadcrumbs items={[{ name: "Dystekt", href: "/" }, { name: "Music", href: "/music/" }]} showNavigation={false} />
+        <Breadcrumbs items={[{ name: "Dystekt", href: "/" }, { name: "Music", href: "/music" }]} showNavigation={false} />
         <section className="music-hero">
           <div className="music-photo" aria-hidden="true" />
           <div className="wrap music-layout">

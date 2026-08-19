@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: "Imprint & Privacy",
   description: "Legal notice, contact information and privacy information for Dystekt.",
   alternates: {
-    canonical: "/imprint/",
+    canonical: "/imprint",
   },
   robots: {
     index: false,
@@ -20,7 +20,7 @@ export default function ImprintPage() {
     <div className="site-shell inner-page legal-page">
       <SiteHeader />
       <main>
-        <Breadcrumbs items={[{ name: "Dystekt", href: "/" }, { name: "Imprint", href: "/imprint/" }]} showNavigation={false} />
+        <Breadcrumbs items={[{ name: "Dystekt", href: "/" }, { name: "Imprint", href: "/imprint" }]} showNavigation={false} />
         <header className="legal-header wrap">
           <p className="eyebrow red">Legal / Contact</p>
           <h1>Imprint</h1>

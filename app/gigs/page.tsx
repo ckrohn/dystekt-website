@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   title: "Gigs",
   description: "Upcoming Dystekt live dates and show details.",
   alternates: {
-    canonical: "/gigs/",
+    canonical: "/gigs",
   },
 };
 
@@ -19,7 +19,7 @@ export default function GigsPage() {
     <div className="site-shell inner-page">
       <SiteHeader />
       <main>
-        <Breadcrumbs items={[{ name: "Dystekt", href: "/" }, { name: "Gigs", href: "/gigs/" }]} showNavigation={false} />
+        <Breadcrumbs items={[{ name: "Dystekt", href: "/" }, { name: "Gigs", href: "/gigs" }]} showNavigation={false} />
         <header className="page-header wrap">
           <p className="eyebrow red">{gigs.eyebrow}</p>
           <h1>{gigs.title}</h1>

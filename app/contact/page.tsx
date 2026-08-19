@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   description:
     "Contact Dystekt for concert bookings, press enquiries and production information.",
   alternates: {
-    canonical: "/contact/",
+    canonical: "/contact",
   },
   openGraph: {
     title: "Contact & Booking - Dystekt",
     description:
       "Book Dystekt for concerts, festivals and support shows, or contact the band for press enquiries.",
-    url: "/contact/",
+    url: "/contact",
   },
   twitter: {
     card: "summary_large_image",
@@ -31,7 +31,7 @@ export default function ContactPage() {
     <div className="site-shell inner-page contact-page">
       <SiteHeader />
       <main>
-        <Breadcrumbs items={[{ name: "Dystekt", href: "/" }, { name: "Contact", href: "/contact/" }]} showNavigation={false} />
+        <Breadcrumbs items={[{ name: "Dystekt", href: "/" }, { name: "Contact", href: "/contact" }]} showNavigation={false} />
         <header className="page-header contact-header wrap">
           <p className="eyebrow red">Booking / Press</p>
           <h1>Contact</h1>
