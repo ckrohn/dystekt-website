@@ -3,8 +3,7 @@ import gigs from "../../data/gigs.json";
 import { Breadcrumbs } from "../components/Breadcrumbs";
 import { SiteFooter } from "../components/SiteFooter";
 import { SiteHeader } from "../components/SiteHeader";
-import { getGigIso } from "../lib/gigs";
-import { GigCard } from "./GigCard";
+import { GigLists } from "./GigLists";
 
 export const metadata: Metadata = {
   title: "Gigs",
@@ -26,11 +25,7 @@ export default function GigsPage() {
           <p className="page-lede">{gigs.intro}</p>
         </header>
 
-        <section className="gig-list wrap" aria-label="Upcoming gigs">
-          {gigs.events.map((gig, index) => (
-            <GigCard gig={gig} index={index} key={getGigIso(gig)} />
-          ))}
-        </section>
+        <GigLists />
       </main>
       <SiteFooter />
     </div>

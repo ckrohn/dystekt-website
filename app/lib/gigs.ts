@@ -20,6 +20,27 @@ export function getGigIso(gig: Gig) {
   return gig.startDate.slice(0, 10);
 }
 
+function getLocalDate(iso: string) {
+  const [year, month, day] = iso.split("-").map(Number);
+  return new Date(year, month - 1, day);
+}
+
+/**
+ * A gig remains upcoming for its full calendar day in the visitor's timezone.
+ */
+export function isPastGig(gig: Gig, now = new Date()) {
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+  return getLocalDate(getGigIso(gig)) < today;
+}
+
+export function sortGigsByDate(events: Gig[], direction: "ascending" | "descending" = "ascending") {
+  return [...events].sort((first, second) => {
+    const difference = getLocalDate(getGigIso(first)).getTime() - getLocalDate(getGigIso(second)).getTime();
+    return direction === "ascending" ? difference : -difference;
+  });
+}
+
 export function getGigDateParts(gig: Gig) {
   const [year, month, day] = getGigIso(gig).split("-");
 

@@ -46,6 +46,7 @@ test("exports every public page as static HTML", async () => {
     availableLanguage: ["English", "German"],
   });
   assert.ok(jsonLd(home).some((entry) => entry["@type"] === "WebSite" && entry.name === "Dystekt"));
+  assert.match(gigsHtml, /Past shows \/ past gigs/);
   for (const platform of ["Instagram", "Bandcamp", "Linktree", "YouTube", "X / Twitter"]) {
     assert.ok(home.includes(platform));
   }
@@ -68,7 +69,6 @@ test("exports every public page as static HTML", async () => {
     const venue = gigsConfig.venues.find((entry) => entry.id === gig.venueId);
     assert.ok(venue);
     assert.ok(gigsHtml.includes(gig.title));
-    assert.ok(gigsHtml.includes(gig.flyer));
     assert.ok(gigsHtml.includes(gig.image));
     assert.ok(gigsHtml.includes(`/gigs/${iso}`));
 

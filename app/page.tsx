@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import gigs from "../data/gigs.json";
+import { NextGig } from "./components/NextGig";
 import { SiteFooter } from "./components/SiteFooter";
 import { SiteHeader } from "./components/SiteHeader";
 import { SocialLinks } from "./components/SocialLinks";
-import { getGigDateParts, getVenue } from "./lib/gigs";
 
 export const metadata: Metadata = {
   alternates: {
@@ -13,10 +12,6 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  const nextGig = gigs.events[0];
-  const nextGigDate = nextGig ? getGigDateParts(nextGig) : null;
-  const nextGigVenue = nextGig ? getVenue(nextGig) : null;
-
   return (
     <div className="site-shell">
       <SiteHeader />
@@ -76,24 +71,7 @@ export default function Home() {
           </div>
         </section>
 
-        {nextGig ? (
-          <section className="next-show" aria-labelledby="next-show-title">
-            <div className="wrap next-show-grid">
-              <div>
-                <p className="eyebrow red">Next live impact</p>
-                <h2 id="next-show-title">{nextGig.title}</h2>
-                <p className="show-location">{nextGigVenue?.name} · {nextGigVenue?.city}</p>
-              </div>
-              <div className="show-date" aria-label={nextGigDate?.label}>
-                <span>{nextGigDate?.day}</span>
-                <span>{nextGigDate?.month} / {nextGigDate?.shortYear}</span>
-              </div>
-              <Link className="button button-outline" href="/gigs">
-                Full gig details
-              </Link>
-            </div>
-          </section>
-        ) : null}
+        <NextGig />
 
         <section className="section connect wrap" aria-labelledby="connect-title">
           <div className="section-mark">
