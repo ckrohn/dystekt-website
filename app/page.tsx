@@ -71,11 +71,25 @@ export default function Home() {
           </div>
         </section>
 
+        <section className="members section wrap" aria-labelledby="members-title">
+          <div className="section-mark"><span>03</span><span>LINE-UP</span></div>
+          <div className="members-content">
+            <h2 id="members-title" className="visually-hidden">Line-Up</h2>
+            <ul className="members-list">
+              <li><span>Thomas</span><span>Vocals</span><a href="https://www.instagram.com/ulebambule" target="_blank" rel="noreferrer">@ulebambule <span aria-hidden="true">↗</span></a></li>
+              <li><span>Chris</span><span>Guitar</span><a href="https://www.instagram.com/christekt" target="_blank" rel="noreferrer">@christekt <span aria-hidden="true">↗</span></a></li>
+              <li><span>Felix</span><span>Guitar</span></li>
+              <li><span>Dominik</span><span>Drums</span><a href="https://www.instagram.com/druminik_dystekt" target="_blank" rel="noreferrer">@druminik_dystekt <span aria-hidden="true">↗</span></a></li>
+              <li><span>TBA</span><span>Bass</span></li>
+            </ul>
+          </div>
+        </section>
+
         <NextGig />
 
         <section className="section connect wrap" aria-labelledby="connect-title">
           <div className="section-mark">
-            <span>03</span>
+            <span>04</span>
             <span>FOLLOW</span>
           </div>
           <div>

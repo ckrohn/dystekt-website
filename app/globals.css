@@ -294,6 +294,7 @@ img {
 }
 
 .intro,
+.members,
 .connect,
 .music-note {
   color: var(--ink);
@@ -307,6 +308,23 @@ img {
   display: grid;
   grid-template-columns: 160px 1fr;
   gap: 48px;
+}
+
+.members {
+  width: 100%;
+  max-width: none;
+  padding-inline: max(24px, calc((100% - 1280px) / 2));
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 48px;
+  padding-block: 80px;
+  border-top: 1px solid var(--line);
+  background: var(--red);
+  color: var(--white);
+}
+
+.members .section-mark span:first-child {
+  color: var(--white);
 }
 
 .section-mark {
@@ -363,6 +381,76 @@ img {
 
 .intro-body p:last-child {
   margin-bottom: 0;
+}
+
+.members-content {
+  max-width: 940px;
+}
+
+.members-list {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-block: 1px solid var(--line);
+}
+
+.members-list li {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-height: 130px;
+  padding: 20px 24px;
+}
+
+.members-list li + li {
+  border-left: 1px solid var(--line);
+}
+
+.members-list li > span:first-child {
+  font-family: var(--display);
+  font-size: 1.15rem;
+  font-weight: 800;
+}
+
+.members-list li > span:nth-child(2) {
+  color: rgba(244, 241, 233, 0.76);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.members-list a {
+  width: fit-content;
+  margin-top: auto;
+  color: var(--white);
+  font-size: 0.84rem;
+}
+
+.members-list a:hover,
+.members-list a:focus-visible {
+  color: var(--ink);
+}
+
+@media (max-width: 900px) {
+  .members-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .members-list li {
+    min-height: 120px;
+    border-top: 1px solid var(--line);
+  }
+
+  .members-list li + li {
+    border-left: 0;
+  }
+
+  .members-list li:nth-child(-n + 3) {
+    border-top: 0;
+  }
 }
 
 .next-show {
@@ -1075,6 +1163,7 @@ img {
   }
 
   .intro,
+  .members,
   .connect,
   .music-note {
     grid-template-columns: 1fr;
@@ -1127,6 +1216,21 @@ img {
 }
 
 @media (max-width: 640px) {
+  .members-list {
+    grid-template-columns: 1fr;
+  }
+
+  .members-list li,
+  .members-list li:nth-child(-n + 3) {
+    min-height: auto;
+    padding-inline: 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .members-list li:first-child {
+    border-top: 0;
+  }
+
   .instagram-post-grid {
     grid-template-columns: 1fr;
   }
@@ -1205,6 +1309,7 @@ img {
   }
 
   .intro,
+  .members,
   .connect {
     width: 100%;
     margin-inline: 0;
