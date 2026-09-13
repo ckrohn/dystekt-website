@@ -19,10 +19,11 @@ function internalPageLinks(htmlContent) {
 }
 
 test("exports every public page as static HTML", async () => {
-  const [home, gigsHtml, musicHtml, downloadsHtml, contactHtml, imprint, gigsConfig, musicConfig, downloadsConfig] = await Promise.all([
+  const [home, gigsHtml, musicHtml, instagramHtml, downloadsHtml, contactHtml, imprint, gigsConfig, musicConfig, downloadsConfig] = await Promise.all([
     html(),
     html("gigs"),
     html("music"),
+    html("instagram"),
     html("downloads"),
     html("contact"),
     html("imprint"),
@@ -46,13 +47,15 @@ test("exports every public page as static HTML", async () => {
     availableLanguage: ["English", "German"],
   });
   assert.ok(jsonLd(home).some((entry) => entry["@type"] === "WebSite" && entry.name === "Dystekt"));
-  assert.match(gigsHtml, /Past shows \/ past gigs/);
+  assert.match(gigsHtml, /Past shows/);
+  assert.match(instagramHtml, /instagram\.com\/p\/DdOYBLVjSrL\/embed\/captioned/);
   for (const platform of ["Instagram", "Bandcamp", "Linktree", "YouTube", "X / Twitter"]) {
     assert.ok(home.includes(platform));
   }
   for (const [page, label] of [
     [gigsHtml, "Gigs"],
     [musicHtml, "Music"],
+    [instagramHtml, "Instagram"],
     [downloadsHtml, "Downloads"],
     [contactHtml, "Contact"],
     [imprint, "Imprint"],
@@ -197,6 +200,7 @@ test("links directly to canonical pages without relying on redirects", async () 
     "",
     "gigs",
     "music",
+    "instagram",
     "downloads",
     "contact",
     "imprint",

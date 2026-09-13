@@ -11,6 +11,7 @@ export function SiteHeader() {
         <Link href="/">Band</Link>
         <Link href="/gigs">Gigs</Link>
         <Link href="/music">Music</Link>
+        <Link href="/instagram">Instagram</Link>
         <Link href="/downloads">Downloads</Link>
         <Link href="/contact">Contact</Link>
       </nav>
