@@ -14,8 +14,9 @@ export const metadata: Metadata = {
   },
   description,
   icons: {
-    icon: "/media/dystekt-logo.svg",
-    shortcut: "/media/dystekt-logo.svg",
+    icon: { url: "/favicon.png", type: "image/png", sizes: "192x192" },
+    shortcut: "/favicon.png",
+    apple: { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
   },
   openGraph: {
     type: "website",

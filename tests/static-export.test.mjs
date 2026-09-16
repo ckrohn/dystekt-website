@@ -259,3 +259,15 @@ test("past gig cards omit ticket sales and all cards omit view-flyer links", asy
     assert.match(upcomingSection, /Presale tickets|Door tickets · no presale listed/);
   }
 });
+
+test("exports a square raster favicon discoverable by search crawlers", async () => {
+  const home = await html();
+  assert.match(home, /<link rel="icon" href="\/favicon.png" type="image\/png" sizes="192x192"/);
+  assert.match(home, /<link rel="apple-touch-icon" href="\/apple-touch-icon.png"/);
+  for (const [file, size] of [["favicon.png", 192], ["apple-touch-icon.png", 180]]) {
+    const png = await readFile(new URL(file, output));
+    assert.deepEqual([...png.subarray(0, 8)], [137, 80, 78, 71, 13, 10, 26, 10]);
+    assert.equal(png.readUInt32BE(16), size);
+    assert.equal(png.readUInt32BE(20), size);
+  }
+});
