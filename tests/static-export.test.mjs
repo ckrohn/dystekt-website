@@ -55,7 +55,7 @@ test("exports every public page as static HTML", async () => {
   for (const [page, label] of [
     [gigsHtml, "Gigs"],
     [musicHtml, "Music"],
-    [instagramHtml, "Instagram"],
+    [instagramHtml, "Posts"],
     [downloadsHtml, "Downloads"],
     [contactHtml, "Contact"],
     [imprint, "Imprint"],
@@ -226,4 +226,23 @@ test("uses only the dependencies needed for this static site", async () => {
     "react",
     "react-dom",
   ]);
+});
+
+
+test("exports live video cards linking to YouTube in a new tab", async () => {
+  const videos = JSON.parse(await readFile(new URL("../data/videos.json", import.meta.url), "utf8"));
+  const overview = await html("videos");
+  const sitemap = await readFile(new URL("sitemap.xml", output), "utf8");
+  assert.match(overview, /href="\/instagram">Posts<\/a>/);
+  for (const video of videos) {
+    assert.ok(video.name);
+    assert.match(video.date, /^\d{4}-\d{2}-\d{2}$/);
+    assert.equal(new URL(video.url).protocol, "https:");
+    assert.ok(overview.includes(video.url));
+    assert.ok(overview.includes(video.date.split("-").reverse().join(".")));
+    assert.ok(overview.includes(`href="${video.url}" target="_blank" rel="noopener noreferrer"`));
+    assert.doesNotMatch(overview, /<dialog/);
+    assert.match(overview, /Watch on YouTube/);
+    assert.ok(sitemap.includes("/videos<"));
+  }
 });

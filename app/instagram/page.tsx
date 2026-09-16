@@ -13,7 +13,7 @@ const posts = [
 ];
 
 export const metadata: Metadata = {
-  title: "Instagram",
+  title: "Posts",
   description: "The latest posts from Dystekt on Instagram.",
   alternates: { canonical: "/instagram" },
 };
@@ -23,10 +23,10 @@ export default function InstagramPage() {
     <div className="site-shell inner-page instagram-page">
       <SiteHeader />
       <main>
-        <Breadcrumbs items={[{ name: "Dystekt", href: "/" }, { name: "Instagram", href: "/instagram" }]} showNavigation={false} />
+        <Breadcrumbs items={[{ name: "Dystekt", href: "/" }, { name: "Posts", href: "/instagram" }]} showNavigation={false} />
         <header className="page-header wrap">
           <p className="eyebrow red">Social / Dystekt</p>
-          <h1>Instagram</h1>
+          <h1>Posts</h1>
           <p className="page-lede">Posts, reels and moments from the band.</p>
         </header>
         <section className="instagram-feed wrap" aria-labelledby="instagram-feed-title">
