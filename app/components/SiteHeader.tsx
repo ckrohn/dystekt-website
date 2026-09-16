@@ -31,8 +31,8 @@ export function SiteHeader() {
         <Link onClick={() => setMenuOpen(false)} href="/">Band</Link>
         <Link onClick={() => setMenuOpen(false)} href="/gigs">Gigs</Link>
         <Link onClick={() => setMenuOpen(false)} href="/music">Music</Link>
-        <Link onClick={() => setMenuOpen(false)} href="/instagram">Posts</Link>
         <Link onClick={() => setMenuOpen(false)} href="/videos">Videos</Link>
+        <Link onClick={() => setMenuOpen(false)} href="/instagram">Posts</Link>
         <Link onClick={() => setMenuOpen(false)} href="/downloads">Downloads</Link>
         <Link onClick={() => setMenuOpen(false)} href="/contact">Contact</Link>
       </nav>

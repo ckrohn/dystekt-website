@@ -2,16 +2,18 @@
 
 import Link from "next/link";
 import { useRef } from "react";
-import { formatGigPrice, formatVenueAddress, getGigDateParts, getGigIso, getResponsiveImageSrcSet, getVenue, type Gig } from "../lib/gigs";
+import { formatGigPrice, formatVenueAddress, getGigDateParts, getGigIso, getResponsiveImageSrcSet, getVenue, isPastGig, type Gig } from "../lib/gigs";
 
 export function GigCard({
   gig,
   index,
   showDetailLink = true,
+  archived = isPastGig(gig),
 }: {
   gig: Gig;
   index: number;
   showDetailLink?: boolean;
+  archived?: boolean;
 }) {
   const lightbox = useRef<HTMLDialogElement>(null);
   const date = getGigDateParts(gig);
@@ -76,7 +78,7 @@ export function GigCard({
           <div><dt>Entry</dt><dd>{formatGigPrice(gig)}</dd></div>
         </dl>
         <div className="gig-actions">
-          {gig.ticket ? (
+          {archived ? null : gig.ticket ? (
             <a className="button button-solid" href={gig.ticket} target="_blank" rel="noreferrer">
               Presale tickets
             </a>
@@ -93,9 +95,6 @@ export function GigCard({
               Event details <span aria-hidden="true">→</span>
             </Link>
           ) : null}
-          <button type="button" className="text-link dark-link flyer-trigger-link" onClick={openFlyer}>
-            View flyer <span aria-hidden="true">↗</span>
-          </button>
         </div>
       </div>
       <dialog

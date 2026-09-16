@@ -109,7 +109,7 @@ test("exports every public page as static HTML", async () => {
     assert.ok(eventHtml.includes(`class="flyer-lightbox"`));
     assert.ok(eventHtml.includes(`${gig.image.replace(".webp", "-320.webp")} 320w`));
     assert.ok(eventHtml.includes(`${gig.image.replace(".webp", "-1000.webp")} 1000w`));
-    assert.ok(eventHtml.includes("View flyer"));
+    assert.ok(!eventHtml.includes("View flyer"));
     if (gig.info) {
       assert.ok(eventHtml.includes("About the show"));
       for (const section of gig.info) {
@@ -244,5 +244,18 @@ test("exports live video cards linking to YouTube in a new tab", async () => {
     assert.doesNotMatch(overview, /<dialog/);
     assert.match(overview, /Watch on YouTube/);
     assert.ok(sitemap.includes("/videos<"));
+  }
+});
+
+test("past gig cards omit ticket sales and all cards omit view-flyer links", async () => {
+  const gigs = await html("gigs");
+  assert.doesNotMatch(gigs, /View flyer/);
+  const pastSection = gigs.match(/<section[^>]*aria-labelledby="past-gigs-title"[\s\S]*?<\/section>/)?.[0];
+  if (pastSection) {
+    assert.doesNotMatch(pastSection, /Presale tickets|Door tickets · no presale listed/);
+  }
+  const upcomingSection = gigs.match(/<section[^>]*aria-labelledby="upcoming-gigs-title"[\s\S]*?<\/section>/)?.[0];
+  if (upcomingSection) {
+    assert.match(upcomingSection, /Presale tickets|Door tickets · no presale listed/);
   }
 });

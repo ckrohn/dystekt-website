@@ -23,7 +23,7 @@ export function GigLists() {
         <section className="gig-section wrap" aria-labelledby="upcoming-gigs-title">
           <h2 id="upcoming-gigs-title" className="gig-section-title">Upcoming shows</h2>
           <div className="gig-list">
-            {upcomingGigs.map((gig, index) => <GigCard gig={gig} index={index} key={gig.startDate} />)}
+            {upcomingGigs.map((gig, index) => <GigCard gig={gig} index={index} key={gig.startDate} archived={false} />)}
           </div>
         </section>
       ) : null}
@@ -32,7 +32,7 @@ export function GigLists() {
         <section className="gig-section wrap" aria-labelledby="past-gigs-title">
           <h2 id="past-gigs-title" className="gig-section-title">Past shows</h2>
           <div className="gig-list">
-            {pastGigs.map((gig, index) => <GigCard gig={gig} index={index} key={gig.startDate} />)}
+            {pastGigs.map((gig, index) => <GigCard gig={gig} index={index} key={gig.startDate} archived />)}
           </div>
         </section>
       ) : null}
