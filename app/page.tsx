@@ -74,13 +74,28 @@ export default function Home() {
         <section className="members section wrap" aria-labelledby="members-title">
           <div className="section-mark"><span>03</span><span>LINE-UP</span></div>
           <div className="members-content">
-            <h2 id="members-title" className="visually-hidden">Line-Up</h2>
+            <h2 id="members-title" className="visually-hidden">Line-up</h2>
             <ul className="members-list">
-              <li><span>Thomas</span><span>Vocals</span><a href="https://www.instagram.com/ulebambule" target="_blank" rel="noreferrer">@ulebambule <span aria-hidden="true">↗</span></a></li>
-              <li><span>Chris</span><span>Guitar</span><a href="https://www.instagram.com/christekt" target="_blank" rel="noreferrer">@christekt <span aria-hidden="true">↗</span></a></li>
-              <li><span>Felix</span><span>Guitar</span></li>
-              <li><span>Dominik</span><span>Drums</span><a href="https://www.instagram.com/druminik_dystekt" target="_blank" rel="noreferrer">@druminik_dystekt <span aria-hidden="true">↗</span></a></li>
-              <li><span>TBA</span><span>Bass</span></li>
+              {[
+                { name: "Thomas", role: "Vocals", handle: "ulebambule" },
+                { name: "Chris", role: "Guitar", handle: "christekt" },
+                { name: "Felix", role: "Guitar", handle: null },
+                { name: "Dominik", role: "Drums", handle: "druminik_dystekt" },
+                { name: "TBA", role: "Bass", handle: null },
+              ].map((member, index) => (
+                <li key={member.role + member.name}>
+                  <span className="member-number" aria-hidden="true">0{index + 1}</span>
+                  <div className="member-identity">
+                    <h3>{member.name}</h3>
+                    <p>{member.role}</p>
+                  </div>
+                  {member.handle && (
+                    <a href={`https://www.instagram.com/${member.handle}`} target="_blank" rel="noopener noreferrer" aria-label={`${member.name} on Instagram (opens in a new tab)`}>
+                      <span>@{member.handle}</span><span aria-hidden="true">↗</span>
+                    </a>
+                  )}
+                </li>
+              ))}
             </ul>
           </div>
         </section>
