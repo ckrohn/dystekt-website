@@ -85,7 +85,7 @@ test("exports every public page as static HTML", async () => {
     assert.ok(eventHtml.includes('aria-label="Breadcrumb"'));
     assert.equal(eventData.name, gig.title);
     assert.equal(eventData.startDate, gig.startDate);
-    assert.equal(eventData.endDate, gig.endDate);
+    assert.equal(eventData.endDate, gig.endDate ?? undefined);
     assert.equal(eventData.offers.price, gig.presalePrice ?? gig.doorPrice);
     assert.equal(eventData.offers.priceCurrency, "EUR");
     assert.ok(!("validFrom" in eventData.offers));
@@ -159,6 +159,10 @@ test("copies deployable media and GitHub Pages files", async () => {
     access(new URL("media/cologne-cataclysm-2026-1000.webp", output)),
     access(new URL("media/gift-und-galle-2026.jpg", output)),
     access(new URL("media/gift-und-galle-2026.webp", output)),
+    access(new URL("media/demonology-2026.jpg", output)),
+    access(new URL("media/demonology-2026.webp", output)),
+    access(new URL("media/demonology-2026-320.webp", output)),
+    access(new URL("media/demonology-2026-1000.webp", output)),
     access(new URL("sitemap.xml", output)),
     access(new URL("robots.txt", output)),
     access(new URL("CNAME", output)),

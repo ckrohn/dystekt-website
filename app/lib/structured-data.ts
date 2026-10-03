@@ -61,7 +61,7 @@ export function getEventStructuredData(gig: Gig) {
     name: gig.title,
     description: `${gig.title} at ${venue.name} in ${venue.city}, featuring Dystekt. Doors at ${gig.doors}; show starts at ${gig.start}.`,
     startDate: gig.startDate,
-    endDate: gig.endDate,
+    ...(gig.endDate ? { endDate: gig.endDate } : {}),
     eventStatus: "https://schema.org/EventScheduled",
     eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
     url: eventUrl,

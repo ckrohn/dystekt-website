@@ -67,6 +67,38 @@
       "website": "https://www.cologne-cataclysm.de"
     },
     {
+      "startDate": "2026-10-03T19:00:00+02:00",
+      "endDate": null,
+      "title": "Demonology",
+      "doors": "18:00",
+      "start": "19:00",
+      "organizer": "Demonology",
+      "flyer": "/media/demonology-2026.jpg",
+      "image": "/media/demonology-2026.webp",
+      "imageWidth": 1000,
+      "imageHeight": 1250,
+      "ticket": "https://demonology.rocks/products/demonology-martyrion-mindreaper-flammenmeer",
+      "venueId": "valhalla-metal-pub",
+      "presalePrice": 12,
+      "doorPrice": 15,
+      "info": null,
+      "bands": [
+        {
+          "name": "Martyrion",
+          "instagram": "https://www.instagram.com/martyrion_band"
+        },
+        {
+          "name": "Mindreaper",
+          "instagram": "https://www.instagram.com/mindreaper_metal/"
+        },
+        {
+          "name": "DYSTEKT",
+          "instagram": "https://www.instagram.com/dystektofficial"
+        }
+      ],
+      "website": "https://demonology.rocks/products/demonology-martyrion-mindreaper-flammenmeer"
+    },
+    {
       "startDate": "2026-10-23T18:00:00+02:00",
       "endDate": "2026-10-23T22:00:00+02:00",
       "title": "Gift und Galle am Rhein",
@@ -104,6 +136,14 @@
       "id": "halle-am-rhein",
       "name": "Halle am Rhein",
       "street": "Am Faulbach 2",
+      "postalCode": "51063",
+      "city": "Köln",
+      "country": "DE"
+    },
+    {
+      "id": "valhalla-metal-pub",
+      "name": "Valhalla Metal Pub",
+      "street": "Clevischer Ring 119",
       "postalCode": "51063",
       "city": "Köln",
       "country": "DE"
