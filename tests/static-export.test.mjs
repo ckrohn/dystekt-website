@@ -48,6 +48,8 @@ test("exports every public page as static HTML", async () => {
   });
   assert.ok(jsonLd(home).some((entry) => entry["@type"] === "WebSite" && entry.name === "Dystekt"));
   assert.match(gigsHtml, /Past shows/);
+  assert.match(instagramHtml, /instagram\.com\/p\/DeASgHbiH7W\/embed\/captioned/);
+  assert.match(instagramHtml, /instagram\.com\/p\/DdzeMXURUfB\/embed\/captioned/);
   assert.match(instagramHtml, /instagram\.com\/p\/DdOYBLVjSrL\/embed\/captioned/);
   for (const platform of ["Instagram", "Bandcamp", "Linktree", "YouTube"]) {
     assert.ok(home.includes(platform));
