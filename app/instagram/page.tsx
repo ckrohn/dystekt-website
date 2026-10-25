@@ -5,7 +5,13 @@ import { SiteHeader } from "../components/SiteHeader";
 
 const instagramUrl = "https://www.instagram.com/dystektofficial/";
 const posts = [
-  "https://www.instagram.com/p/DeASgHbiH7W/embed/captioned/",
+  "https://www.instagram.com/p/De4JL2ENBMu/embed/captioned/",
+  "https://www.instagram.com/p/DeSFrtUI5iS/embed/captioned/",
+  "https://www.instagram.com/p/DeH9NkIxbas/embed/captioned/",
+  "https://www.instagram.com/p/DeEi0siDtVO/embed/captioned/",
+  "https://www.instagram.com/p/DeEdpgcjTHr/embed/captioned/",
+  "https://www.instagram.com/reel/DeDC1auKgEb/embed/captioned/",
+  "https://www.instagram.com/p/DeBpqHjunAU/embed/captioned/",
   "https://www.instagram.com/p/DdzeMXURUfB/embed/captioned/",
   "https://www.instagram.com/p/DdOYBLVjSrL/embed/captioned/",
   "https://www.instagram.com/reel/DdBn0O5k4ua/embed/captioned/",

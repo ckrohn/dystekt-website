@@ -4,7 +4,8 @@ export function VideoGallery() {
   return (
     <section className="video-grid wrap" aria-label="Live gig videos">
       {videos.map((video) => {
-        const videoId = new URL(video.url).pathname.split("/").pop();
+        const url = new URL(video.url);
+        const videoId = url.searchParams.get("v") ?? url.pathname.split("/").pop();
         return (
           <a className="video-tile" key={video.url} href={video.url} target="_blank" rel="noopener noreferrer" aria-label={`Watch ${video.name}, ${getVideoDate(video)} on YouTube (opens in a new tab)`}>
             <span className="video-thumbnail">

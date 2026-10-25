@@ -48,7 +48,10 @@ test("exports every public page as static HTML", async () => {
   });
   assert.ok(jsonLd(home).some((entry) => entry["@type"] === "WebSite" && entry.name === "Dystekt"));
   assert.match(gigsHtml, /Past shows/);
-  assert.match(instagramHtml, /instagram\.com\/p\/DeASgHbiH7W\/embed\/captioned/);
+  assert.match(instagramHtml, /instagram\.com\/p\/De4JL2ENBMu\/embed\/captioned/);
+  assert.match(instagramHtml, /instagram\.com\/p\/DeSFrtUI5iS\/embed\/captioned/);
+  assert.match(instagramHtml, /instagram\.com\/p\/DeH9NkIxbas\/embed\/captioned/);
+  assert.doesNotMatch(instagramHtml, /DeASgHbiH7W/);
   assert.match(instagramHtml, /instagram\.com\/p\/DdzeMXURUfB\/embed\/captioned/);
   assert.match(instagramHtml, /instagram\.com\/p\/DdOYBLVjSrL\/embed\/captioned/);
   for (const platform of ["Instagram", "Bandcamp", "Linktree", "YouTube"]) {
@@ -240,6 +243,8 @@ test("exports live video cards linking to YouTube in a new tab", async () => {
   const overview = await html("videos");
   const sitemap = await readFile(new URL("sitemap.xml", output), "utf8");
   assert.match(overview, /href="\/instagram">Posts<\/a>/);
+  assert.match(overview, /https:\/\/i\.ytimg\.com\/vi\/FHd36It0bSE\/hqdefault\.jpg/);
+  assert.match(overview, /https:\/\/i\.ytimg\.com\/vi\/CBh8JhtBhFE\/hqdefault\.jpg/);
   for (const video of videos) {
     assert.ok(video.name);
     assert.match(video.date, /^\d{4}-\d{2}-\d{2}$/);

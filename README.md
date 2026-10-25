@@ -50,6 +50,6 @@ Run the production build and static-output checks together with `npm test`.
 - Confirm that `https://www.dystekt.band` continues to redirect to the apex domain over HTTPS.
 
 Live gig videos live in `data/videos.json`. Each entry requires `name`, `date`
-(YYYY-MM-DD), and `url` (the YouTube Short URL). The overview at `/videos` uses
-YouTube thumbnails and opens each Short in a new tab. Rebuild to publish new
+(YYYY-MM-DD), and `url` (a YouTube video or Short URL). The overview at `/videos` uses
+YouTube thumbnails and opens each video in a new tab. Rebuild to publish new
 entries. The Posts section remains at `/instagram` so existing links continue to work.
