@@ -129,6 +129,71 @@
         }
       ],
       "website": null
+    },
+    {
+      "startDate": "2026-12-17T19:00:00+01:00",
+      "endDate": "2026-12-17T23:30:00+01:00",
+      "title": "Kernige Weihnachten",
+      "doors": "18:00",
+      "start": "19:00",
+      "organizer": "Hartkern e.V.",
+      "flyer": "/media/kernige-weihnachten-2026-source.webp",
+      "image": "/media/kernige-weihnachten-2026.webp",
+      "imageWidth": 1000,
+      "imageHeight": 1000,
+      "ticket": "https://stagedates.com/events/kernige-weihnacht-fzw-20261217-MYivc",
+      "venueId": "fzw-dortmund",
+      "presalePrice": 8,
+      "doorPrice": 10,
+      "info": [
+        {
+          "heading": "Kernige Weihnachten 2026",
+          "paragraphs": [
+            "Hartkern e.V. brings Kernige Weihnachten back to FZW Dortmund for its fifth edition on Thursday, 17 December 2026. Black Molar, Ewig.Endlich, DYSTEKT, Pointing Fingers, Billy Zach and Unfaded share a bill spanning metal, hardcore and punk.",
+            "Doors open at 18:00 and the show starts at 19:00. Advance tickets are advertised at €9 via FZW; entry on the door is €10."
+          ]
+        },
+        {
+          "heading": "Accessibility",
+          "paragraphs": [
+            "FZW has step-free access, including the small stage in the Gastro area. The club balcony has step-free access and two wheelchair spaces. An accessible toilet is available, and accompanying support persons receive free admission."
+          ]
+        },
+        {
+          "heading": "Awareness and photography",
+          "paragraphs": [
+            "An awareness team is available to anyone who feels uncomfortable, harassed or needs help. Discrimination and abusive behaviour are not tolerated.",
+            "Flash photography will be used during the event. Please contact the event team if you are sensitive to flashing lights."
+          ]
+        }
+      ],
+      "bands": [
+        {
+          "name": "Black Molar",
+          "instagram": "https://blackmolarnoise.bandcamp.com/album/black-molar"
+        },
+        {
+          "name": "Ewig.Endlich",
+          "instagram": "https://www.instagram.com/ewigendlich/"
+        },
+        {
+          "name": "DYSTEKT",
+          "instagram": "https://www.instagram.com/dystektofficial"
+        },
+        {
+          "name": "Pointing Fingers",
+          "instagram": "https://www.instagram.com/pointingfingershc/"
+        },
+        {
+          "name": "Billy Zach",
+          "instagram": "https://www.instagram.com/billy_zach_band/"
+        },
+        {
+          "name": "Unfaded",
+          "instagram": "https://www.instagram.com/unfaded_hc/"
+        }
+      ],
+      "website": "https://stagedates.com/events/kernige-weihnacht-fzw-20261217-MYivc"
     }
   ],
   "venues": [
@@ -146,6 +211,14 @@
       "street": "Clevischer Ring 119",
       "postalCode": "51063",
       "city": "Köln",
+      "country": "DE"
+    },
+    {
+      "id": "fzw-dortmund",
+      "name": "FZW",
+      "street": "Ritterstr. 20",
+      "postalCode": "44137",
+      "city": "Dortmund",
       "country": "DE"
     }
   ]

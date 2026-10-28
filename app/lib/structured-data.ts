@@ -95,7 +95,7 @@ export function getEventStructuredData(gig: Gig) {
         ? { "@id": bandId, url: siteUrl, email: "mailto:contact@dystekt.band" }
         : {}),
       name: band.name,
-      sameAs: band.instagram,
+      ...(band.instagram ? { sameAs: band.instagram } : {}),
     })),
   };
 }

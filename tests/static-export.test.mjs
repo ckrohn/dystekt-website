@@ -107,7 +107,12 @@ test("exports every public page as static HTML", async () => {
     );
     for (const band of gig.bands) {
       assert.ok(gigsHtml.includes(band.name));
-      assert.ok(gigsHtml.includes(band.instagram));
+      if (band.instagram) assert.ok(gigsHtml.includes(band.instagram));
+      const performer = eventData.performer.find((entry) => entry.name === band.name);
+      assert.equal(performer.sameAs, band.instagram ?? undefined);
+      if (!band.instagram) {
+        assert.ok(eventHtml.includes(`<span>${band.name}</span>`));
+      }
     }
     assert.ok(eventHtml.includes(`<meta name="twitter:title" content="${gig.title} — Dystekt"`));
     assert.ok(eventHtml.includes(`<meta name="twitter:image" content="https://dystekt.band${gig.image}"`));

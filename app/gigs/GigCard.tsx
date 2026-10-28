@@ -67,10 +67,12 @@ export function GigCard({
           <div>
             <dt>Line-up</dt>
             <dd className="gig-bands">
-              {gig.bands.map((band) => (
+              {gig.bands.map((band) => band.instagram ? (
                 <a key={band.name} href={band.instagram} target="_blank" rel="noreferrer">
                   {band.name}<span className="visually-hidden"> on Instagram</span>
                 </a>
+              ) : (
+                <span key={band.name}>{band.name}</span>
               ))}
             </dd>
           </div>

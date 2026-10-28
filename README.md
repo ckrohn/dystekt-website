@@ -17,7 +17,7 @@ entry in `venues`. Venue display addresses and structured data are derived from 
 `name`, `street`, `postalCode`, `city`, and `country`. Event structured data also uses
 `endDate`, `presalePrice`, `doorPrice`, `organizer`, `website`, and `ticket`.
 `website` is the official event page, while `ticket` must point directly to the presale page. Each event also has a `bands` array containing the participating bands and their
-Instagram URLs. Set `info` to an array of
+Instagram URLs (use `null` when no account is verified). Set `info` to an array of
 heading/paragraph sections to show formatted copy on an event detail page, or to `null`
 to omit it. Music and audio-player entries live in
 `data/music.json`; downloadable resources live in `data/downloads.json`. Add
